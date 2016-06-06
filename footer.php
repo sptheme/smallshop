@@ -10,17 +10,21 @@
  */
 
 ?>
+			<?php wpsp_hook_content_bottom(); ?>
 
-	</div><!-- #content -->
+		</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'smallshop' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'smallshop' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'smallshop' ), 'smallshop', '<a href="https://www.linkedin.com/in/sopheakpeas" rel="designer">Sopheak</a>' ); ?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+		<?php wpsp_hook_content_after(); ?>
+
+		<?php wpsp_hook_wrap_bottom(); ?>
+
+	</div> <!-- #wrap -->
+	
+	<?php wpsp_hook_wrap_after(); ?>
+
 </div><!-- #page -->
+
+<?php wpsp_outer_wrap_after(); ?>
 
 <?php wp_footer(); ?>
 

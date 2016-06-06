@@ -12,33 +12,33 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Small_Shop
+ * @package WPSP_Blog
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses smallshop_header_style()
+ * @uses wpspblog_header_style()
  */
-function smallshop_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'smallshop_custom_header_args', array(
+function wpspblog_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'wpspblog_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'smallshop_header_style',
+		'wp-head-callback'       => 'wpspblog_header_style',
 	) ) );
 }
-add_action( 'after_setup_theme', 'smallshop_custom_header_setup' );
+add_action( 'after_setup_theme', 'wpspblog_custom_header_setup' );
 
-if ( ! function_exists( 'smallshop_header_style' ) ) :
+if ( ! function_exists( 'wpspblog_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog.
  *
- * @see smallshop_custom_header_setup().
+ * @see wpspblog_custom_header_setup().
  */
-function smallshop_header_style() {
+function wpspblog_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	/*

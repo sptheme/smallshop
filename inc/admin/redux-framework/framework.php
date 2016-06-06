@@ -69,7 +69,7 @@
             // Please update the build number with each push, no matter how small.
             // This will make for easier support when we ask users what version they are using.
 
-            public static $_version = '3.6.0.5';
+            public static $_version = '3.6.0.2';
             public static $_dir;
             public static $_url;
             public static $_upload_dir;
@@ -1739,7 +1739,7 @@
                     $hint_status = get_user_meta( $current_user->ID, 'ignore_hints' ) ? get_user_meta( $current_user->ID, 'ignore_hints', true ) : 'true';
 
                     // current page parameters
-                    $curPage = esc_attr( $_GET['page'] );
+                    $curPage = $_GET['page'];
 
                     $curTab = '0';
                     if ( isset ( $_GET['tab'] ) ) {
@@ -2948,16 +2948,6 @@
                                 if ( ! isset ( $plugin_options[ $field['id'] ] ) ) {
                                     $plugin_options[ $field['id'] ] = 0;
                                 }
-                            }
-
-//                            if ( isset ( $field['type'] ) && $field['type'] == 'typography' ) {
-//                                if ( ! is_array( $plugin_options[ $field['id'] ] ) && ! empty( $plugin_options[ $field['id'] ] ) ) {
-//                                    $plugin_options[ $field['id'] ] = json_decode( $plugin_options[ $field['id'] ], true );
-//                                }
-//                            }
-
-                            if ( isset( $this->extensions[ $field['type'] ] ) && method_exists( $this->extensions[ $field['type'] ], '_validate_values' ) ) {
-                                $plugin_options = $this->extensions[ $field['type'] ]->_validate_values( $plugin_options, $field );
                             }
 
                             // Default 'not_empty 'flag to false.
