@@ -114,14 +114,14 @@ html {
 
 /* Chrome fix */
 body > div {
-	font-size: 1.3rem;
+	font-size: 1.4rem;
 }
 
 body {
 	background-color: #ffffff;
-	color: #333;
-	font-size: 13px;
-	font-size: 1.3rem;
+	color: #7e7e7e;
+	font-size: 14px;
+	font-size: 1.4rem;
 	-webkit-font-smoothing: antialiased;
 	font-weight: 400;
 	line-height: 1.625;
@@ -134,14 +134,15 @@ input,
 select,
 textarea {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 1em; /*13px;*/ 
+	font-size: 1em;
 	line-height: 1.65; 
 	color: #666666;
 }
 
 h1,h2,h3,h4,h5,h6 { 
-	font-weight: 600; 
-	color: #222; 
+	font-family: 'Oswald', sans-serif;
+	font-weight: 400; 
+	color: #373737; 
 	line-height: 1.5; 
 	margin: 0 0 12px; 
 }
@@ -225,7 +226,7 @@ big {
 }
 
 em { font-style: italic }
-strong { font-weight: 600; }
+strong { font-weight: 700; }
 small { font-size: 80% }
 
 
@@ -347,6 +348,13 @@ table { width: 100%; }
 :-ms-input-placeholder {
 	color: #686868;
 	font-family: 'Open Sans', sans-serif;
+}
+
+/* Selection */
+::selection {
+    background: #000;
+    color: #fff;
+    text-shadow: none;
 }
 
 /*--------------------------------------------------------------
@@ -642,7 +650,7 @@ body.has-overlay-header .wpsp-sticky-header-holder { background: none !important
 .site-footer .widget_categories li { margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px solid #333; }
 
 /* Footer > Typography */
-.footer-widget .widget-title { display: block; line-height: 1.5; color: #fff; font-weight: 600; font-size: 1.077em; margin: 0 0 20px; }
+.footer-widget .widget-title { display: block; line-height: 1.5; color: #fff; font-weight: 700; font-size: 1.077em; margin: 0 0 20px; }
 .site-footer p { color: #777 }
 .site-footer-widgets { position: relative }
 .site-footer a,
@@ -1426,7 +1434,7 @@ body.wpsp-noscroll {
 .search-entry h2 { 
 	font-size: 1.313em; 
 	margin: 0 0 10px; 
-	font-weight: 600; 
+	font-weight: 300; 
 }
 .search-entry-thumb { 
 	position: absolute; 
@@ -1508,7 +1516,7 @@ body.boxed-main-layout #searchform-header-replace-close { right: 30px }
 }
 
 /* Accessibility > Theme Heading */
-.theme-heading { height: auto; top: auto !important; font-size: 1.154em; font-weight: 600; color: #000; margin: 0 0 20px; overflow: hidden; position: relative; }
+.theme-heading { height: auto; top: auto !important; font-size: 1.154em; font-weight: 700; color: #000; margin: 0 0 20px; overflow: hidden; position: relative; }
 .theme-heading span.text { display: inline-block; max-width: 90%; position: relative; }
 .theme-heading span.text:after { content: ""; display: block; position: absolute; top: 50%; border-bottom: solid 1px #eee; left: 100%; width: 9999px; margin-top: -1px; margin-left: 15px; }
 
@@ -1623,9 +1631,10 @@ h6 a:hover,
 .widget .widget-title { 
 	display: block; 
 	margin: 0 0 20px; 
+	font-family: 'Oswald';
 	font-size: 1.077em; 
 	line-height: 1.5; 
-	font-weight: 600; 
+	font-weight: 400; 
 	color: #000; 
 }
 
@@ -1800,7 +1809,7 @@ h6 a:hover,
 .entries.left-thumbs .hentry .entry-details { background: none; border: none; float: right; width: 50%; padding: 0; }
 
 /* Entries > Title */
-.entry-title { display: block; font-size: 1.077em; margin: 0 0 5px; font-weight: 600; color: #000; }
+.entry-title { display: block; font-size: 1.077em; margin: 0 0 5px; font-weight: 400; color: #000; }
 .entry-title a { color: inherit }
 .entry-title a:hover { text-decoration: none }
 .single-post-title { font-size: 1.846em; margin: 0 0 10px; font-weight: 400; }
@@ -2076,7 +2085,7 @@ object {
 .single .format-quote .fa-quote-right { position: absolute; right: 15px; bottom: 15px; font-size: 60px; display: block; z-index: 1; opacity: 0.1; }
 
 /*next/previous posts*/
-.post-pagination { border-top: 1px solid #eee; padding: 30px 0; color: #888; list-style: none; font-size: 1.077em; font-weight: 600; margin: 0; }
+.post-pagination { border-top: 1px solid #eee; padding: 30px 0; color: #888; list-style: none; font-size: 1.077em; font-weight: 700; margin: 0; }
 .post-pagination .post-prev { float: left; width: 48%; }
 .post-pagination .post-prev span { margin-right: 5px }
 .post-pagination .post-next { float: right; width: 48%; text-align: right; }
@@ -2090,7 +2099,7 @@ object {
 .author-bio { position: relative; margin: 0 0 40px; background: #f7f7f7; border: 1px solid #eee; padding: 25px 25px 25px 125px; }
 .author-bio-avatar { position: absolute; top: 20px; left: 20px; }
 .author-bio-avatar img { display: block; border-radius: 74px; -moz-border-radius: 74px; -webkit-border-radius: 74px; height: 74px; width: 74px; }
-.author-bio-title { font-weight: 600; font-size: 1.077em; margin: 0 0 10px; }
+.author-bio-title { font-weight: 700; font-size: 1.077em; margin: 0 0 10px; }
 .author-bio-description p:last-child { margin: 0 }
 .author-bio-social { margin-top: 15px }
 .author-bio-social a { display: block; float: left; color: #fff; height: 25px; line-height: 25px; width: 25px; border-radius: 50%; -moz-border-radius: 50%; -webkit-border-radius: 50%; text-align: center; margin-right: 4px; font-size: 13px; background: #1e1e1e; }
@@ -2180,7 +2189,7 @@ object {
 .overlay-slideup-title { position: absolute; top: 0; right: 0; background: #fff; height: 100%; width: 100%; transition: all .25s ease-in-out; }
 .overlay-slideup-title.white { background: #fff }
 .overlay-slideup-title.black { background: #000 }
-.overlay-slideup-title span.title { position: absolute; bottom: 30px; left: 0; width: 100%; text-align: center; padding: 0 30px; color: #000; font-size: 1.077em; font-weight: 600; transition: all .15s ease-in-out; line-height: 1.6em; }
+.overlay-slideup-title span.title { position: absolute; bottom: 30px; left: 0; width: 100%; text-align: center; padding: 0 30px; color: #000; font-size: 1.077em; font-weight: 700; transition: all .15s ease-in-out; line-height: 1.6em; }
 .overlay-slideup-title.black span.title { color: #fff }
 .overlay-parent:hover .overlay-slideup-title { visibility: visible; opacity: 0.8; -webkit-opacity: 0.8; -moz-opacity: 0.8; }
 .overlay-parent:hover .overlay-slideup-title span.title { bottom: 60px }
@@ -2189,7 +2198,7 @@ object {
 .overlay-title-excerpt-hover { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; overflow: hidden; }
 .overlay-parent:hover .overlay-title-excerpt-hover { visibility: visible; opacity: 1; -moz-opacity: 1; -webkit-opacity: 1; }
 .overlay-title-excerpt-hover-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
-.overlay-title-excerpt-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-title-excerpt-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 700; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
 .overlay-title-excerpt-hover:hover .overlay-title-excerpt-hover-text { transform: none }
 .overlay-title-excerpt-hover-title { font-size: 1.231em; color: #fff; margin: 0 0 10px; }
 .overlay-title-excerpt-hover-excerpt { font-style: italic; font-weight: normal; color: #bbb; overflow: hidden; }
@@ -2198,7 +2207,7 @@ object {
 .overlay-title-category-hover { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; }
 .overlay-parent:hover .overlay-title-category-hover { visibility: visible; opacity: 1; }
 .overlay-title-category-hover-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; overflow: hidden; }
-.overlay-title-category-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-title-category-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 700; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
 .overlay-title-category-hover:hover .overlay-title-category-hover-text { transform: none }
 .overlay-title-category-hover-title { font-size: 1.231em }
 .overlay-title-category-hover-category { font-style: italic; font-weight: normal; color: #bbb; }
@@ -2206,7 +2215,7 @@ object {
 /* Overlays > Title + Category Visible */
 .overlay-title-category-visible { background: #000; background: rgba(0,0,0,0.5); position: absolute; top: 0; right: 0; height: 100%; width: 100%; }
 .overlay-title-category-visible-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
-.overlay-title-category-visible-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; }
+.overlay-title-category-visible-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 700; padding: 20px; }
 .overlay-title-category-visible-title { font-size: 1.231em }
 .overlay-title-category-visible-category { color: #fff; font-weight: normal; -webkit-font-smoothing: antialiased; }
 
@@ -2214,7 +2223,7 @@ object {
 .overlay-title-date-hover { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; }
 .overlay-parent:hover .overlay-title-date-hover { visibility: visible; opacity: 1; }
 .overlay-title-date-hover-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
-.overlay-title-date-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-title-date-hover-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 700; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
 .overlay-title-date-hover:hover .overlay-title-date-hover-text { transform: none }
 .overlay-title-date-hover-title { font-size: 1.231em }
 .overlay-title-date-hover-date { font-style: italic; font-weight: normal; color: #bbb; }
@@ -2222,7 +2231,7 @@ object {
 /* Overlays > Title + Date Visible */
 .overlay-title-date-visible { background: #000; background: rgba(0,0,0,0.5); position: absolute; top: 0; right: 0; height: 100%; width: 100%; }
 .overlay-title-date-visible-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
-.overlay-title-date-visible-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; }
+.overlay-title-date-visible-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 700; padding: 20px; }
 .overlay-title-date-visible-title { font-size: 1.231em }
 .overlay-title-date-visible-date { color: #fff; font-weight: normal; -webkit-font-smoothing: antialiased; }
 
@@ -2240,18 +2249,18 @@ object {
 /* Overlays > Button */
 .overlay-hover-button { background: #000; background: rgba(0,0,0,0.75); position: absolute; top: 0; right: 0; height: 100%; width: 100%; transition: all .25s ease-in-out; }
 .overlay-hover-button-inner { display: table; vertical-align: middle; width: 100%; height: 100%; text-align: center; }
-.overlay-hover-button-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 600; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
+.overlay-hover-button-text { vertical-align: middle; display: table-cell; text-align: center; color: #fff; font-weight: 700; padding: 20px; transition: all 0.15s linear; transform: scale(1.3); }
 .overlay-parent:hover .overlay-hover-button-text { transform: none }
 .theme-button.overlay-hover-button-link { font-size: 1.077em }
 
 /* Overlays > Category Tag */
 .overlay-category-tag { position: absolute; left: 0; top: 0; margin: 0; z-index: 99; }
-.overlay-category-tag a { display: block; float: left; font-size: 0.846em; font-weight: 600; padding: 0.308em 0.615em; margin-right: 5px; margin-bottom: 5px; text-transform: uppercase; transition: 0.15s all; -moz-transition: 0.15s all; -webkit-transition: 0.15s all; color: #fff; background: #000; background: rgba( 0, 0, 0, 0.65 ); }
+.overlay-category-tag a { display: block; float: left; font-size: 0.846em; font-weight: 700; padding: 0.308em 0.615em; margin-right: 5px; margin-bottom: 5px; text-transform: uppercase; transition: 0.15s all; -moz-transition: 0.15s all; -webkit-transition: 0.15s all; color: #fff; background: #000; background: rgba( 0, 0, 0, 0.65 ); }
 .overlay-category-tag a:hover { background: #000; text-decoration: none; }
 
 /* Overlays > Category Tag v2 */
 .overlay-category-tag-two { position: absolute; left: 20px; top: 20px; margin: 0; z-index: 99; }
-.overlay-category-tag-two a { display: block; float: left; font-size: 0.846em; font-weight: 600; padding: 0.308em 0.923em; margin-right: 5px; margin-bottom: 5px; text-transform: uppercase; transition: 0.15s all; -webkit-transition: 0.15s all; color: #fff; border: 2px solid #fff; border-color: rgba(255,255,255,0.5); border-radius: 40px; -moz-border-radius: 40px; letter-spacing: 1px; }
+.overlay-category-tag-two a { display: block; float: left; font-size: 0.846em; font-weight: 700; padding: 0.308em 0.923em; margin-right: 5px; margin-bottom: 5px; text-transform: uppercase; transition: 0.15s all; -webkit-transition: 0.15s all; color: #fff; border: 2px solid #fff; border-color: rgba(255,255,255,0.5); border-radius: 40px; -moz-border-radius: 40px; letter-spacing: 1px; }
 .overlay-category-tag-two a:hover { background: #fff; color: #000; text-decoration: none; }
 
 

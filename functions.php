@@ -381,7 +381,7 @@ class WPSP_Theme_Setup {
 		wp_enqueue_style( 'wpspblog-style', get_stylesheet_uri() );
 
 		//Add Google Fonts (English): Open Sans
-		//wp_enqueue_style( 'google-font-english', 'https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' );
+		//wp_enqueue_style( 'google-font-english', 'https://fonts.googleapis.com/css?family=Oswald:400,300|Open+Sans:400,400italic,700,700italic' );
 		//wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css' );
 
 		//Add Google Font (Khmer): Hanuman
