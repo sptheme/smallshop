@@ -27,6 +27,9 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			if ( ! is_admin() ) {
 				// Display correct sidebar for products
 				add_filter( 'wpsp_sidebar_primary', array( $this, 'display_woo_sidebar' ) );
+
+				// Set correct post layouts
+				add_filter( 'wpsp_layout_class', array( $this, 'layouts' ) );
 			}
 		}
 
@@ -66,6 +69,22 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Return correct sidebar
 			return $sidebar;
 
+		}
+
+		/**
+		 * Tweaks the post layouts for WooCommerce archives and single product posts.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function layouts( $class ) {
+			if ( wpsp_is_woo_shop() ) {
+				$class = 'full-width'; // wpsp_get_redux( 'woo_shop_layout', 'full-width' );
+			} elseif ( wpsp_is_woo_tax() ) {
+				$class = 'full-width'; // wpsp_get_redux( 'woo_shop_layout', 'full-width' );
+			} elseif ( wpsp_is_woo_single() ) {
+				$class = 'full-width'; //wpsp_get_redux( 'woo_product_layout', 'full-width' );
+			}
+			return $class;
 		}
 	}
 

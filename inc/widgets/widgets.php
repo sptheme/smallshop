@@ -210,6 +210,9 @@ function wpsp_layout_class() {
 	// Global option
 	else $layout = wpsp_get_redux( 'layout-global' );
 
+	// Apply filters for child theme editing
+	$layout = apply_filters( 'wpsp_layout_class', $layout );
+
 	// Return layout class
 	return $layout;
 }
