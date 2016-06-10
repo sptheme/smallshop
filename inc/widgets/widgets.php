@@ -123,9 +123,8 @@ if ( $footer_widgets ) {
  * 
  */
 if ( ! function_exists( 'wpsp_sidebar_primary' ) ) :	
-function wpsp_sidebar_primary() {
-	$sidebar = 'sidebar';
-
+function wpsp_sidebar_primary( $sidebar = 'sidebar' ) {
+	
 	// Set sidebar based on page
 	if ( is_home() && wpsp_get_redux('sidebar-global') ) $sidebar = wpsp_get_redux('sidebar-global');
 
@@ -140,6 +139,12 @@ function wpsp_sidebar_primary() {
 	if ( is_tax('portfolio_category') && wpsp_get_redux('sidebar-portfolio-archive') ) $sidebar = wpsp_get_redux('sidebar-portfolio-archive');
 	if ( is_tax('portfolio_tag') && wpsp_get_redux('sidebar-portfolio-archive') ) $sidebar = wpsp_get_redux('sidebar-portfolio-archive');
 
+	/***
+	 * FILTER    => Add filter for tweaking the sidebar display via child theme's
+	 * IMPORTANT => Must be added before meta options so that it doesn't take priority
+	 ***/
+	$sidebar = apply_filters( 'wpsp_sidebar_primary', $sidebar );
+
 	// Check for page/post specific sidebar
 	if ( is_page() || is_single() ) {
 		// Reset post data
@@ -148,6 +153,11 @@ function wpsp_sidebar_primary() {
 		// Get meta
 		$meta = get_post_meta($post->ID,'wpsp_sidebar_primary',true);
 		if ( $meta ) { $sidebar = $meta; }
+	}
+
+	// Never show empty sidebar
+	if ( ! is_active_sidebar( $sidebar ) ) {
+		$sidebar = 'sidebar';
 	}
 
 	// Return sidebar

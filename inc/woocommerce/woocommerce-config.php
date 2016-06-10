@@ -20,6 +20,52 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		*/
 		function __construct(){
 			include_once( WPSP_INC_DIR . 'woocommerce/woocommerce-helper.php' );
+
+			// Register Woo Sidebar
+			add_filter( 'widgets_init', array( $this, 'register_woo_sidebar' ) );
+
+			if ( ! is_admin() ) {
+				// Display correct sidebar for products
+				add_filter( 'wpsp_sidebar_primary', array( $this, 'display_woo_sidebar' ) );
+			}
+		}
+
+		/**
+		* Register WooCommerce Sidebar
+		*
+		* @since 1.0.0
+		*/
+		public static function register_woo_sidebar() {
+			// Get correct sidebar heading tag
+			$sidebar_headings = wpsp_get_redux( 'sidebar-headings', 'div' );
+			$sidebar_headings = $sidebar_headings ? $sidebar_headings : 'div';
+
+			// Register new woo_sidebar widget area
+			register_sidebar( array (
+				'name'          => esc_html__( 'WooCommerce Sidebar', 'wpsp-blog-textdomain' ),
+				'id'            => 'woo_sidebar',
+				'before_widget' => '<div class="widget %2$s clear">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<'. $sidebar_headings .' class="widget-title">',
+				'after_title'   => '</'. $sidebar_headings .'>',
+			) );
+		}
+
+		/**
+		 * Display WooCommerce sidebar.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function display_woo_sidebar( $sidebar ) {
+
+			// Alter sidebar display to show woo_sidebar where needed
+			if ( is_woocommerce() && is_active_sidebar( 'woo_sidebar' ) ) {
+				$sidebar = 'woo_sidebar';
+			}
+
+			// Return correct sidebar
+			return $sidebar;
+
 		}
 	}
 
