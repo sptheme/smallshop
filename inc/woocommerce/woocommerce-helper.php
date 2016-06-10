@@ -58,3 +58,18 @@ function wpsp_is_woo_single() {
 		return true;
 	}
 }
+
+/**
+ * Outputs placeholder image
+ *
+ * @since 1.0.0
+ */
+function wpsp_woo_placeholder_img() {
+	if ( function_exists( 'wc_placeholder_img_src' ) && wc_placeholder_img_src() ) {
+		$placeholder = '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_attr__( 'Placeholder Image', 'total' ) .'" class="woo-entry-image-main" />';
+		$placeholder = apply_filters( 'wpsp_woo_placeholder_img_html', $placeholder );
+		if ( $placeholder ) {
+			echo $placeholder;
+		}
+	}
+}
