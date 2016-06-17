@@ -369,3 +369,16 @@ function wpsp_footer_bottom() {
 function wpsp_scroll_top() {
 	get_template_part( 'partials/scroll-top' );
 }
+
+/*-------------------------------------------------------------------------------*/
+/* -  Other
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Returns social sharing template part
+ *
+ * @since 1.0.0
+ */
+function wpsp_social_share() {
+	get_template_part( 'partials/social-share' );
+}
