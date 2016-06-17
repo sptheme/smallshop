@@ -31,6 +31,10 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 				// Set correct post layouts
 				add_filter( 'wpsp_layout_class', array( $this, 'layouts' ) );
 			}
+
+			// Scripts
+			add_action( 'woocommerce_enqueue_styles', array( $this, 'remove_styles' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'remove_scripts' ) );
 		}
 
 		/**
@@ -85,6 +89,30 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 				$class = 'full-width'; //wpsp_get_redux( 'woo_product_layout', 'full-width' );
 			}
 			return $class;
+		}
+
+		/**
+		 * Remove WooCommerce styles not needed for this theme.
+		 *
+		 * @since 1.0.0
+		 * @link  http://docs.woothemes.com/document/disable-the-default-stylesheet/
+		 */
+		public static function remove_styles( $enqueue_styles ) {
+			unset( $enqueue_styles['woocommerce-layout'] );
+			unset( $enqueue_styles['woocommerce_prettyPhoto_css'] );
+			return $enqueue_styles;
+		}
+
+		/**
+		 * Remove WooCommerce scripts.
+		 *
+		 *
+		 * @since 1.0.0
+		 */
+		public static function remove_scripts() {
+			wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+			wp_dequeue_script( 'prettyPhoto' );
+			wp_dequeue_script( 'prettyPhoto-init' );
 		}
 	}
 
