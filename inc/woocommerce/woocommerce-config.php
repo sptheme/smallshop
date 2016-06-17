@@ -47,6 +47,10 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 
 			// Product post
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'clear_summary_floats' ), 1 );
+
+			// Main Woo Filters
+			add_filter( 'wp_nav_menu_items', array( $this, 'menu_cart_icon' ) , 10, 2 );
+			add_filter( 'add_to_cart_fragments', array( $this, 'menu_cart_icon_fragments' ) );
 		}
 
 		/**
@@ -182,6 +186,65 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 					<?php echo apply_filters( 'wpsp_woo_outofstock_text', esc_html__( 'Out of Stock', 'wpsp-blog-textdomain' ) ); ?>
 				</div><!-- .product-entry-out-of-stock-badge -->
 			<?php }
+		}
+
+		/**
+		 * Adds cart icon to menu
+		 *
+		 * @since 1.0.0
+		 */
+		public static function menu_cart_icon( $items, $args ) {
+
+			// Only used for the main menu
+			if ( 'main_menu' != $args->theme_location ) {
+				return $items;
+			}
+
+			// Get style
+			$style = menu_cart_style();
+
+			// Return items if no style
+			if ( ! $style ) {
+				return $items;
+			}
+
+			// Toggle class
+			$toggle_class = 'toggle-cart-widget';
+
+			// Define classes to add to li element
+			$classes = array( 'woo-menu-icon', 'wpsp-menu-extra' );
+			
+			// Add style class
+			$classes[] = 'wcmenucart-toggle-'. $style;
+
+			// Prevent clicking on cart and checkout
+			if ( 'custom-link' != $style && ( is_cart() || is_checkout() ) ) {
+				$classes[] = 'nav-no-click';
+			}
+
+			// Add toggle class
+			else {
+				$classes[] = $toggle_class;
+			}
+
+			// Turn classes into string
+			$classes = implode( ' ', $classes );
+			
+			// Add cart link to menu items
+			$items .= '<li class="'. $classes .'">' . wpsp_wcmenucart_menu_item() .'</li>';
+			
+			// Return menu items
+			return $items;
+		}
+
+		/**
+		 * Add menu cart item to the Woo fragments so it updates with AJAX
+		 *
+		 * @since 1.0.0
+		 */
+		public static function menu_cart_icon_fragments( $fragments ) {
+			$fragments['.wcmenucart'] = wpsp_wcmenucart_menu_item();
+			return $fragments;
 		}
 	}
 
