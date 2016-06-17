@@ -43,6 +43,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Menu cart
 			add_action( 'wpsp_hook_header_inner', array( $this, 'cart_dropdown' ), 40 );
 			add_action( 'wpsp_hook_main_menu_bottom', array( $this, 'cart_dropdown' ) );
+			add_action( 'wp_footer', array( $this, 'cart_overlay' ) );
 
 			// Product entries
 			add_action( 'woocommerce_before_shop_loop_item', array( $this, 'add_shop_loop_item_inner_div' ) );
@@ -232,6 +233,17 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 				get_template_part( 'partials/cart/cart-dropdown' );
 			}
 
+		}
+
+		/**
+		 * Adds Cart overlay code to footer
+		 *
+		 * @since 3.0.0
+		 */
+		public static function cart_overlay() {
+			if ( 'overlay' == menu_cart_style() ) {
+				get_template_part( 'partials/cart/cart-overlay' );
+			}
 		}
 		
 		/**
