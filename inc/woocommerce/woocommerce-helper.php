@@ -134,7 +134,7 @@ function menu_cart_style() {
 	$style = wpsp_get_redux( 'woo-menu-icon-style', 'drop_down' );
 
 	// Overlay header should use pop-up
-	if ( wpsp_get_redux( 'enable-header' ) || 'six' == wpsp_get_redux( 'header-style' ) ) {
+	if ( wpsp_get_redux( 'enable-header' ) && 'six' == wpsp_get_redux( 'header-style' ) ) {
 		$style = 'overlay';
 	}
 
@@ -147,7 +147,7 @@ function menu_cart_style() {
 	$style = apply_filters( 'wpsp_menu_cart_style', $style );
 
 	// Sanitize output so it's not empty
-	if ( 'drop-down' == $style || ! $style ) {
+	if ( 'drop_down' == $style || ! $style ) {
 		$style = 'drop_down';
 	}
 

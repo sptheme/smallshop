@@ -371,6 +371,11 @@ class WPSP_Theme_Setup {
 			$localize_array['headerFiveSplitOffset'] = 1;
 		}
 
+		// WooCart
+		if ( WPSP_WOOCOMMERCE_ACTIVE ) {
+			$localize_array['wooCartStyle'] = menu_cart_style();
+		}
+
 		wp_localize_script( 'wpsp-custom', 'wpspLocalize', $localize_array );
 	}
 

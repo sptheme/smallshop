@@ -40,6 +40,10 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Social share
 			add_action( 'woocommerce_after_single_product_summary', 'wpsp_social_share', 11 );
 
+			// Menu cart
+			add_action( 'wpsp_hook_header_inner', array( $this, 'cart_dropdown' ), 40 );
+			add_action( 'wpsp_hook_main_menu_bottom', array( $this, 'cart_dropdown' ) );
+
 			// Product entries
 			add_action( 'woocommerce_before_shop_loop_item', array( $this, 'add_shop_loop_item_inner_div' ) );
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'close_shop_loop_item_inner_div' ) );
@@ -188,6 +192,48 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			<?php }
 		}
 
+		/**
+		 * Add WooCommerce cart dropdown to the header
+		 *
+		 * @since 1.0.0
+		 */
+		public static function cart_dropdown() {
+
+			// Return if style not set to dropdown
+			if ( 'drop_down' != menu_cart_style() ) {
+				return;
+			}
+
+			// Should we get the template part?
+			$get = false;
+
+			// Get current header style
+			$header_style = wpsp_get_redux( 'header-style' );
+
+			// Header Inner Hook
+			if ( 'wpsp_hook_header_inner' == current_filter() ) {
+				if ( 'one' == $header_style ) {
+					$get = true;
+				}
+			}
+			
+			// Menu bottom hook
+			elseif ( 'wpsp_hook_main_menu_bottom' == current_filter() ) {
+				if ( 'two' == $header_style
+					|| 'three' == $header_style
+					|| 'four' == $header_style
+					|| 'five' == $header_style ) {
+					$get = true;
+				}
+			}
+
+			// Get template file
+			if ( $get ) {
+				get_template_part( 'partials/cart/cart-dropdown' );
+			}
+
+		}
+		
 		/**
 		 * Adds cart icon to menu
 		 *
