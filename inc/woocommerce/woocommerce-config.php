@@ -39,6 +39,14 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 
 			// Social share
 			add_action( 'woocommerce_after_single_product_summary', 'wpsp_social_share', 11 );
+
+			// Product entries
+			add_action( 'woocommerce_before_shop_loop_item', array( $this, 'add_shop_loop_item_inner_div' ) );
+			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'close_shop_loop_item_inner_div' ) );
+			add_action( 'woocommerce_before_shop_loop_item', array( $this, 'add_shop_loop_item_out_of_stock_badge' ) );
+
+			// Product post
+			add_action( 'woocommerce_after_single_product_summary', array( $this, 'clear_summary_floats' ), 1 );
 		}
 
 		/**
@@ -134,6 +142,46 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 				wp_enqueue_style( 'wpsp-woocommerce-responsive', WPSP_CSS_DIR_URI .'wpsp-woocommerce-responsive.css', array( 'wpsp-woocommerce' ) );
 			}
 
+		}
+
+		/**
+		 * Adds an opening div "product-inner" around product entries.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function add_shop_loop_item_inner_div() {
+			echo '<div class="product-inner clear">';
+		}
+
+		/**
+		 * Closes the "product-inner" div around product entries.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function close_shop_loop_item_inner_div() {
+			echo '</div><!-- .product-inner .clear -->';
+		}
+
+		/**
+		 * Clear floats after single product summary.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function clear_summary_floats() {
+			echo '<div class="wpsp-clear-after-summary clear"></div>';
+		}
+
+		/**
+		 * Adds an out of stock tag to the products.
+		 *
+		 * @since 2.0.0
+		 */
+		public static function add_shop_loop_item_out_of_stock_badge() {
+			if ( function_exists( 'wpsp_woo_product_instock' ) && ! wpsp_woo_product_instock() ) { ?>
+				<div class="outofstock-badge">
+					<?php echo apply_filters( 'wpsp_woo_outofstock_text', esc_html__( 'Out of Stock', 'wpsp-blog-textdomain' ) ); ?>
+				</div><!-- .product-entry-out-of-stock-badge -->
+			<?php }
 		}
 	}
 

@@ -73,3 +73,19 @@ function wpsp_woo_placeholder_img() {
 		}
 	}
 }
+
+/**
+ * Check if product is in stock
+ *
+ * @since 1.0.0
+ */
+function wpsp_woo_product_instock( $post_id = '' ) {
+	global $post;
+	$post_id      = $post_id ? $post_id : $post->ID;
+	$stock_status = get_post_meta( $post_id, '_stock_status', true );
+	if ( 'instock' == $stock_status ) {
+		return true;
+	} else {
+		return false;
+	}
+}
