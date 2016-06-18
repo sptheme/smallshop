@@ -62,6 +62,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'loop_shop_per_page', array( $this, 'loop_shop_per_page' ), 20 );
 			add_filter( 'loop_shop_columns', array( $this, 'loop_shop_columns' ) );
 			add_filter( 'post_class', array( $this, 'add_product_entry_classes' ) );
+			add_filter( 'product_cat_class', array( $this, 'product_cat_class' ) );
 		}
 
 		/**
@@ -389,6 +390,18 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 				$classes[] = 'col';
 				$classes[] = wpsp_grid_class( $woocommerce_loop['columns'] );
 			}
+			return $classes;
+		}
+
+		/**
+		 * Alter WooCommerce category classes
+		 *
+		 * @since 1.0.0
+		 */
+		public static function product_cat_class( $classes ) {
+			global $woocommerce_loop;
+			$classes[] = 'col';
+			$classes[] = wpsp_grid_class( $woocommerce_loop['columns'] );
 			return $classes;
 		}
 
