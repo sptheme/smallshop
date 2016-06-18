@@ -361,7 +361,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 * @since 1.0.0
 		 */
 		public static function loop_shop_per_page() {
-			$posts_per_page = wpex_get_mod( 'woo_shop_posts_per_page' );
+			$posts_per_page = wpsp_get_redux( 'woo-shop-posts-per-page', 12 );
 			$posts_per_page = $posts_per_page ? $posts_per_page : '12';
 			return $posts_per_page;
 		}
@@ -372,7 +372,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 * @since 1.0.0
 		 */
 		public static function loop_shop_columns() {
-			$columns = wpex_get_mod( 'woocommerce_shop_columns' );
+			$columns = wpsp_get_redux( 'woocommerce-shop-columns' 4 );
 			$columns = $columns ? $columns : '4';
 			return $columns;
 		}
