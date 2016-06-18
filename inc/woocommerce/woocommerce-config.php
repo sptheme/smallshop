@@ -63,6 +63,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'loop_shop_columns', array( $this, 'loop_shop_columns' ) );
 			add_filter( 'post_class', array( $this, 'add_product_entry_classes' ) );
 			add_filter( 'product_cat_class', array( $this, 'product_cat_class' ) );
+			add_filter( 'woocommerce_cart_item_thumbnail', array( $this, 'cart_item_thumbnail' ), 10, 3 );
 		}
 
 		/**
@@ -403,6 +404,31 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			$classes[] = 'col';
 			$classes[] = wpsp_grid_class( $woocommerce_loop['columns'] );
 			return $classes;
+		}
+
+		/**
+		 * Alter the cart item thumbnail size
+		 *
+		 * @since 1.0.0
+		 */
+		public static function cart_item_thumbnail( $thumb, $cart_item, $cart_item_key ) {
+			if ( ! empty( $cart_item['variation_id'] )
+				&& $thumbnail = get_post_thumbnail_id( $cart_item['variation_id'] )
+			) {
+				return wpsp_get_post_thumbnail( array(
+					'size'       => 'shop_thumbnail',
+					'attachment' => $thumbnail,
+				) );
+			} elseif ( isset( $cart_item['product_id'] )
+				&& $thumbnail = get_post_thumbnail_id( $cart_item['product_id'] )
+			) {
+				return wpsp_get_post_thumbnail( array(
+					'size'       => 'shop_thumbnail',
+					'attachment' => $thumbnail,
+				) );
+			} else {
+				return wc_placeholder_img();
+			}
 		}
 
 	}
