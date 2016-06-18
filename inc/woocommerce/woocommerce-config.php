@@ -59,6 +59,8 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'woocommerce_general_settings', array( $this, 'remove_general_settings' ) );
 			add_filter( 'woocommerce_product_settings', array( $this, 'remove_product_settings' ) );
 			add_filter( 'woocommerce_sale_flash', array( $this, 'woocommerce_sale_flash' ), 10, 3 );
+			add_filter( 'loop_shop_per_page', array( $this, 'loop_shop_per_page' ), 20 );
+			add_filter( 'loop_shop_columns', array( $this, 'loop_shop_columns' ) );
 		}
 
 		/**
