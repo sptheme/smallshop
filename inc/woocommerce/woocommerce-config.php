@@ -65,6 +65,8 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'product_cat_class', array( $this, 'product_cat_class' ) );
 			add_filter( 'woocommerce_cart_item_thumbnail', array( $this, 'cart_item_thumbnail' ), 10, 3 );
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_product_args' ) );
+			add_filter( 'woocommerce_pagination_args', array( $this, 'pagination_args' ) );
+
 		}
 
 		/**
@@ -451,6 +453,17 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 				'posts_per_page' => $posts_per_page,
 				'columns'        => $columns,
 			);
+		}
+
+		/**
+		 * Tweaks pagination arguments.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function pagination_args( $args ) {
+			$args['prev_text'] = '<i class="fa fa-angle-left"></i>';
+			$args['next_text'] = '<i class="fa fa-angle-right"></i>';
+			return $args;
 		}
 
 	}
