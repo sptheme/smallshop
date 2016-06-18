@@ -297,6 +297,9 @@ class WPSP_Theme_Setup {
 		// Leaner modal used for search/woo modals: @todo: Replace with CSS+light js
 		wp_enqueue_script( 'wpsp-leanner-modal', $dir .'vendors/leanner-modal.js', array( 'jquery' ), $theme_version, true );
 
+		// Custom Selects
+		wp_enqueue_script( 'wpsp-custom-select', $dir .'vendors/jquery.customSelect.js', array( 'jquery' ), $theme_version, true );
+
 		// Tooltips
 		wp_enqueue_script( 'wpsp-tipsy', $dir .'vendors/tipsy.js', array( 'jquery' ), $theme_version, true );
 

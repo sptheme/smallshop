@@ -73,6 +73,7 @@
 				self.headerCart();
 				self.backTopLink();
 				self.archiveMasonryGrids();
+				self.customSelects();
 			} );
 
 			// Run on Window Load
@@ -1270,6 +1271,25 @@
 			
 			// Add equal heights
 			$( '.equal-height-column, .match-height-row .match-height-content, .vcex-feature-box-match-height .vcex-match-height, .equal-height-content, .match-height-grid .match-height-content, .blog-entry-equal-heights .blog-entry-inner, .wpsp-vc-row-columns-match-height .wpsp-vc-column-wrapper' ).matchHeight();
+
+		},
+
+		/**
+		 * Custom Selects
+		 *
+		 * @since 1.0.0
+		 */
+		customSelects: function() {
+
+			// Custom selects based on wpexLocalize array
+			$( wpspLocalize.customSelects ).customSelect( {
+				customClass: 'theme-select'
+			} );
+
+			// WooCommerce
+			if ( $.fn.select2 !== undefined ) {
+				$( '#calc_shipping_country' ).select2();
+			}
 
 		},
 
