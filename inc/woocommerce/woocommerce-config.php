@@ -58,6 +58,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'add_to_cart_fragments', array( $this, 'menu_cart_icon_fragments' ) );
 			add_filter( 'woocommerce_general_settings', array( $this, 'remove_general_settings' ) );
 			add_filter( 'woocommerce_product_settings', array( $this, 'remove_product_settings' ) );
+			add_filter( 'woocommerce_sale_flash', array( $this, 'woocommerce_sale_flash' ), 10, 3 );
 		}
 
 		/**
@@ -342,6 +343,16 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			}
 			return $settings;
 		}
+
+		/**
+		 * Change onsale text.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function woocommerce_sale_flash( $text, $post, $_product ) {
+			return '<span class="onsale">'. esc_html__( 'Sale', 'wpsp-blog-textdomain' ) .'</span>';
+		}
+
 	}
 
 }
