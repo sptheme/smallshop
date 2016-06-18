@@ -61,6 +61,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'woocommerce_sale_flash', array( $this, 'woocommerce_sale_flash' ), 10, 3 );
 			add_filter( 'loop_shop_per_page', array( $this, 'loop_shop_per_page' ), 20 );
 			add_filter( 'loop_shop_columns', array( $this, 'loop_shop_columns' ) );
+			add_filter( 'post_class', array( $this, 'add_product_entry_classes' ) );
 		}
 
 		/**
@@ -372,9 +373,23 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 * @since 1.0.0
 		 */
 		public static function loop_shop_columns() {
-			$columns = wpsp_get_redux( 'woocommerce-shop-columns' 4 );
+			$columns = wpsp_get_redux( 'woocommerce-shop-columns', 4 );
 			$columns = $columns ? $columns : '4';
 			return $columns;
+		}
+
+		/**
+		 * Add classes to WooCommerce product entries.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function add_product_entry_classes( $classes ) {
+			global $product, $woocommerce_loop;
+			if ( $product && $woocommerce_loop ) {
+				$classes[] = 'col';
+				$classes[] = wpsp_grid_class( $woocommerce_loop['columns'] );
+			}
+			return $classes;
 		}
 
 	}
