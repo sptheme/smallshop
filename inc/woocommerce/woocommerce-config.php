@@ -66,7 +66,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'woocommerce_cart_item_thumbnail', array( $this, 'cart_item_thumbnail' ), 10, 3 );
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_product_args' ) );
 			add_filter( 'woocommerce_pagination_args', array( $this, 'pagination_args' ) );
-
+			add_filter( 'woocommerce_continue_shopping_redirect', array( $this, 'continue_shopping_redirect' ) );
 		}
 
 		/**
@@ -464,6 +464,22 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			$args['prev_text'] = '<i class="fa fa-angle-left"></i>';
 			$args['next_text'] = '<i class="fa fa-angle-right"></i>';
 			return $args;
+		}
+
+		/**
+		 * Alter continue shoping URL.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function continue_shopping_redirect( $return_to ) {
+			$shop_id = woocommerce_get_page_id( 'shop' );
+			if ( function_exists( 'icl_object_id' ) ) {
+				$shop_id = icl_object_id( $shop_id, 'page' );
+			}
+			if ( $shop_id ) {
+				$return_to = get_permalink( $shop_id );
+			}
+			return $return_to;
 		}
 
 	}
