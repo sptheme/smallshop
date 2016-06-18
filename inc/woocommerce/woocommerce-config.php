@@ -114,11 +114,11 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 */
 		public static function layouts( $class ) {
 			if ( wpsp_is_woo_shop() ) {
-				$class = 'full-width'; // wpsp_get_redux( 'woo_shop_layout', 'full-width' );
+				$class = wpsp_get_redux( 'woo-shop-layout', 'left-sidebar' );
 			} elseif ( wpsp_is_woo_tax() ) {
-				$class = 'full-width'; // wpsp_get_redux( 'woo_shop_layout', 'full-width' );
+				$class = wpsp_get_redux( 'woo_shop_layout', 'left-sidebar' );
 			} elseif ( wpsp_is_woo_single() ) {
-				$class = 'full-width'; //wpsp_get_redux( 'woo_product_layout', 'full-width' );
+				$class = wpsp_get_redux( 'woo_product_layout', 'left-sidebar' );
 			}
 			return $class;
 		}
