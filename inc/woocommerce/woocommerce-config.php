@@ -56,6 +56,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Main Woo Filters
 			add_filter( 'wp_nav_menu_items', array( $this, 'menu_cart_icon' ) , 10, 2 );
 			add_filter( 'add_to_cart_fragments', array( $this, 'menu_cart_icon_fragments' ) );
+			add_filter( 'woocommerce_general_settings', array( $this, 'remove_general_settings' ) );
 		}
 
 		/**
@@ -303,6 +304,21 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		public static function menu_cart_icon_fragments( $fragments ) {
 			$fragments['.wcmenucart'] = wpsp_wcmenucart_menu_item();
 			return $fragments;
+		}
+
+		/**
+		 * Remove general settings from Woo Admin panel.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function remove_general_settings( $settings ) {
+			$remove = array( 'woocommerce_enable_lightbox' );
+			foreach( $settings as $key => $val ) {
+				if ( isset( $val['id'] ) && in_array( $val['id'], $remove ) ) {
+					unset( $settings[$key] );
+				}
+			}
+			return $settings;
 		}
 	}
 
