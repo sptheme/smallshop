@@ -64,6 +64,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'post_class', array( $this, 'add_product_entry_classes' ) );
 			add_filter( 'product_cat_class', array( $this, 'product_cat_class' ) );
 			add_filter( 'woocommerce_cart_item_thumbnail', array( $this, 'cart_item_thumbnail' ), 10, 3 );
+			add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_product_args' ) );
 		}
 
 		/**
@@ -429,6 +430,27 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			} else {
 				return wc_placeholder_img();
 			}
+		}
+
+		/**
+		 * Alter the related product arguments.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function related_product_args() {
+			// Get global vars
+			global $product, $orderby, $related;
+			// Get posts per page
+			$posts_per_page = wpsp_get_redux( 'woocommerce-related-count', 4 );
+			$posts_per_page = $posts_per_page ? $posts_per_page : '4';
+			// Get columns
+			$columns = wpsp_get_redux( 'woocommerce-related-columns', 4 );
+			$columns = $columns ? $columns : '4';
+			// Return array
+			return array(
+				'posts_per_page' => $posts_per_page,
+				'columns'        => $columns,
+			);
 		}
 
 	}
