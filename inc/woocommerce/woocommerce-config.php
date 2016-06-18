@@ -353,6 +353,28 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			return '<span class="onsale">'. esc_html__( 'Sale', 'wpsp-blog-textdomain' ) .'</span>';
 		}
 
+		/**
+		 * Returns correct posts per page for the shop
+		 *
+		 * @since 1.0.0
+		 */
+		public static function loop_shop_per_page() {
+			$posts_per_page = wpex_get_mod( 'woo_shop_posts_per_page' );
+			$posts_per_page = $posts_per_page ? $posts_per_page : '12';
+			return $posts_per_page;
+		}
+
+		/**
+		 * Change products per row for the main shop.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function loop_shop_columns() {
+			$columns = wpex_get_mod( 'woocommerce_shop_columns' );
+			$columns = $columns ? $columns : '4';
+			return $columns;
+		}
+
 	}
 
 }
