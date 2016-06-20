@@ -79,9 +79,52 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 * @since 1.0.0
 		 */
 		public function init() {
+
+			// Alter WooCommerce category thumbnail
+			remove_action( 'woocommerce_before_subcategory_title', 'woocommerce_subcategory_thumbnail', 10 );
+			add_action( 'woocommerce_before_subcategory_title', array( $this, 'subcategory_thumbnail' ), 10 );
+
 			// Remove loop product thumbnail function and add our own that pulls from template parts
 			remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_thumbnail' ), 10 );
+		}
+
+		/**
+		 * Change category thumbnail.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function subcategory_thumbnail( $category ) {
+
+			// Get attachment id
+			$attachment      = get_woocommerce_term_meta( $category->term_id, 'thumbnail_id', true  );
+			$attachment_data = wpsp_get_attachment_data( $attachment );
+
+			// Get alt
+			if ( ! empty( $attachment_data['alt'] ) ) {
+				$alt = $attachment_data['alt'];
+			} else {
+				$alt = $category->name;
+			}
+
+			// Return thumbnail if attachment is defined
+			if ( $attachment ) {
+
+				wpsp_post_thumbnail( array(
+					'attachment' => $attachment,
+					'size'       => 'shop_category',
+					'alt'        => esc_attr( $alt ),
+				) );
+
+			}
+
+			// Display placeholder
+			else {
+
+				echo '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_html__( 'Placeholder Image', 'wpsp-blog-textdomain' ) .'" />';
+
+			}
+
 		}
 
 		/**
