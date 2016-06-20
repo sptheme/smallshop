@@ -83,6 +83,10 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Remove category descriptions, these are added already by the theme
 			remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
 
+			// Alter cross-sells display
+			remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+			add_action( 'woocommerce_cart_collaterals', array( $this, 'cross_sell_display' ) );
+
 			// Alter upsells display
 			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 			add_action( 'woocommerce_after_single_product_summary', array( $this, 'upsell_display' ), 15 );
@@ -100,16 +104,32 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		}
 
 		/**
+		 * Change products per row for crossells.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function cross_sell_display() {
+			// Get count
+			$count = wpex_get_mod( 'woocommerce-cross-sells-count' );
+			$count = $count ? $count : '2';
+			// Get columns
+			$columns = wpex_get_mod( 'woocommerce-cross-sells-columns' );
+			$columns = $columns ? $columns : '2';
+			// Alter cross-sell display
+			woocommerce_cross_sell_display( $count, $columns );
+		}
+
+		/**
 		 * Change products per row for upsells.
 		 *
 		 * @since 1.0.0
 		 */
 		public static function upsell_display() {
 			// Get count
-			$count = wpsp_get_redux( 'woocommerce_upsells_count', 3 );
+			$count = wpsp_get_redux( 'woocommerce-upsells-count', 3 );
 			$count = $count ? $count : '3';
 			// Get columns
-			$columns = wpsp_get_redux( 'woocommerce_upsells_columns', 3 );
+			$columns = wpsp_get_redux( 'woocommerce-upsells-columns', 3 );
 			$columns = $columns ? $columns : '3';
 			// Alter upsell display
 			woocommerce_upsell_display( $count, $columns );
