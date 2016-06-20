@@ -82,6 +82,7 @@
 				self.megaMenusTop();
 				self.flushDropdownsTop();
 				self.equalHeights();
+				self.sliderPro();
 				
 				// Delay functions if page animations are enabled
 				if ( $.fn.animsition && wpspLocalize.pageAnimation && wpspLocalize.pageAnimationInDuration ) {
@@ -1275,13 +1276,106 @@
 		},
 
 		/**
+		 * SliderPro
+		 *
+		 * @since 1.0.0
+		 */
+		sliderPro: function() {
+
+			// Set main object to self
+			var self = this;
+
+			// Loop through each slider
+			$( '.wpsp-slider' ).each( function() {
+
+				// Declare vars
+				var $slider = $( this ),
+					$data   = $slider.data();
+
+				// Lets show things that were hidden to prevent flash
+				$( '.wpsp-slider-slide, .wpsp-slider-thumbnails' ).css( {
+					'opacity': 1,
+					'display': 'block'
+				} );
+
+				// Get height based on first items to prevent animation on initial load
+				var $preloader               = $( '.wpsp-slider' ).prev( '.wpsp-slider-preloaderimg' ),
+					$height                  = $preloader.length ? $preloader.outerHeight() : null,
+					$heightAnimationDuration = self.parseData( $data.heightAnimationDuration, 500 );
+
+				// Run slider
+				$slider.sliderPro( {
+					responsive              : true,
+					width                   : '100%',
+					height                  : $height,
+					fade                    : self.parseData( $data.fade, 600 ),
+					touchSwipe              : self.parseData( $data.touchSwipe, true ),
+					fadeDuration            : self.parseData( $data.animationSpeed, 600 ),
+					slideAnimationDuration  : self.parseData( $data.animationSpeed, 600 ),
+					autoHeight              : self.parseData( $data.autoHeight, true ),
+					heightAnimationDuration : $heightAnimationDuration,
+					arrows                  : self.parseData( $data.arrows, true ),
+					fadeArrows              : self.parseData( $data.fadeArrows, true ),
+					autoplay                : self.parseData( $data.autoPlay, true ),
+					autoplayDelay           : self.parseData( $data.autoPlayDelay, 5000 ),
+					buttons                 : self.parseData( $data.buttons, true ),
+					shuffle                 : self.parseData( $data.shuffle, false ),
+					orientation             : self.parseData( $data.direction, 'horizontal' ),
+					loop                    : self.parseData( $data.loop, false ),
+					keyboard                : false,
+					fullScreen              : self.parseData( $data.fullscreen, false ),
+					slideDistance           : self.parseData( $data.slideDistance, 0 ),
+					thumbnailsPosition      : 'bottom',
+					thumbnailHeight         : self.parseData( $data.thumbnailHeight, 70 ),
+					thumbnailWidth          : self.parseData( $data.thumbnailWidth, 70 ),
+					thumbnailPointer        : self.parseData( $data.thumbnailPointer, false ),
+					updateHash              : self.parseData( $data.updateHash, false ),
+					thumbnailArrows         : false,
+					fadeThumbnailArrows     : false,
+					thumbnailTouchSwipe     : true,
+					fadeCaption             : self.parseData( $data.fadeCaption, true ),
+					captionFadeDuration     : 500,
+					waitForLayers           : true,
+					autoScaleLayers         : true,
+					forceSize               : 'none',
+					reachVideoAction        : 'playVideo',
+					leaveVideoAction        : 'pauseVideo',
+					endVideoAction          : 'nextSlide',
+					fadeOutPreviousSlide    : false, // prevents flash on fast transitions
+					init                    : function( event ) {
+						$slider.prev( '.wpsp-slider-preloaderimg' ).hide();
+						if ( $slider.parent( '.gallery-format-post-slider' ) && $( '.blog-masonry-grid' ).length ) {
+							setTimeout( function() {
+								$( '.blog-masonry-grid' ).isotope( 'layout' );
+							}, $heightAnimationDuration + 1 );
+						}
+					},
+					gotoSlideComplete       : function( event ) {
+						if ( $slider.parent( '.gallery-format-post-slider' ) && $( '.blog-masonry-grid' ).length ) {
+							$( '.blog-masonry-grid' ).isotope( 'layout' );
+						}
+					}
+
+				} );
+
+			} );
+
+			// WooCommerce: Prevent clicking on Woo entry slider
+			$( '.woo-product-entry-slider' ).click( function() {
+				return false;
+			} );
+
+		   
+		},
+
+		/**
 		 * Custom Selects
 		 *
 		 * @since 1.0.0
 		 */
 		customSelects: function() {
 
-			// Custom selects based on wpexLocalize array
+			// Custom selects based on wpspLocalize array
 			$( wpspLocalize.customSelects ).customSelect( {
 				customClass: 'theme-select'
 			} );
