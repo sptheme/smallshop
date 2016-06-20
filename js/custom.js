@@ -28,6 +28,7 @@
 				$windowTop              : $( window ).scrollTop(),
 				$body                   : $( 'body' ),
 				$mobileMenuBreakpoint   : 960,
+				$wpAdminBar             : null,
 				$siteHeader             : null,
 				$siteHeaderHeight       : 0,
 				$siteHeaderTop          : 0,
@@ -74,6 +75,7 @@
 				self.backTopLink();
 				self.archiveMasonryGrids();
 				self.customSelects();
+				self.magnificPopup();
 			} );
 
 			// Run on Window Load
@@ -136,6 +138,12 @@
 			// Local scroll speed
 			if ( wpspLocalize.localScrollSpeed ) {
 				this.config.$localScrollSpeed = parseInt( wpspLocalize.localScrollSpeed );
+			}
+
+			// Define Wp admin bar
+			var $wpAdminBar = $( '#wpadminbar' );
+			if ( $wpAdminBar.length ) {
+				this.config.$wpAdminBar = $wpAdminBar;
 			}
 
 			// Define header
@@ -1388,6 +1396,55 @@
 		},
 
 		/**
+		 * magnificPopup
+		 *
+		 * @since 1.0.0
+		 */
+		magnificPopup: function() {
+			// Make sure equal heights function is defined
+			if ( ! $.fn.magnificPopup ) {
+				return;
+			}
+
+			// Setup content a link work with magnificPopup
+		    $('a[href*=".jpg"], a[href*=".jpeg"], a[href*=".png"], a[href*=".gif"]').each(function(){
+	        	if ($(this).parents('.gallery').length == 0) {
+		            $(this).magnificPopup({
+		               type: 'image',
+		               removalDelay: 500,
+		               mainClass: 'mfp-fade'
+		            });
+		        }
+		    });
+
+		    // Setup wp gallery work with magnificPopup
+		    $('.gallery').each(function() {
+		        $(this).magnificPopup({
+		            delegate: 'a',
+		            type: 'image',
+		            removalDelay: 300,
+		            mainClass: 'mfp-fade',
+		            gallery: {
+		            	enabled: true,
+		            	navigateByImgClick: true
+		            }
+		        });
+		    });
+
+		    // Setup video work with magnificPopup
+		    $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+				disableOn: 700,
+				type: 'iframe',
+				mainClass: 'mfp-fade',
+				removalDelay: 160,
+				preloader: false,
+
+				fixedContentPos: false
+			});
+
+		},
+
+		/**
 		 * Parses data to check if a value is defined in the data attribute and if not returns the fallback
 		 *
 		 * @since 1.0.0
@@ -1456,8 +1513,11 @@
 
 			// Add wp toolbar
 			if ( $( '#wpadminbar' ).length ) {
-				$offSet = parseInt( $offSet ) + 32;
+				$offSet = parseInt( $offSet ) + parseInt( $( '#wpadminbar' ).outerHeight() );
 			}
+
+			// Add 1 extra decimal to prevent cross browser rounding issues
+			$offSet = $offSet ? $offSet - 1 : 0;
 
 			// Return offset
 			return $offSet;

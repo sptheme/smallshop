@@ -307,6 +307,9 @@ class WPSP_Theme_Setup {
 		// Tooltips
 		wp_enqueue_script( 'wpsp-tipsy', $dir .'vendors/tipsy.js', array( 'jquery' ), $theme_version, true );
 
+		// Magnific Popup
+		wp_enqueue_script( 'wpsp-magnific-popup', $dir .'vendors/jquery.magnific-popup.min.js', array( 'jquery' ), $theme_version, true );
+
 		// Core global custom
 		wp_enqueue_script( 'wpsp-custom', $dir .'custom.js', array( 'jquery' ), $theme_version, true );
 
@@ -405,6 +408,7 @@ class WPSP_Theme_Setup {
 		//Enabling Local Web Fonts
 		wp_enqueue_style( 'local-fonts-english', get_template_directory_uri() . '/fonts/custom-fonts.css' );
 		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/fonts/font-awesome/css/font-awesome.min.css' );
+		wp_enqueue_style( 'magnific-popup', WPSP_CSS_DIR_URI . 'magnific-popup.css' );
 	}
 
 	/**
