@@ -80,6 +80,13 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 */
 		public function init() {
 
+			// Remove category descriptions, these are added already by the theme
+			remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
+
+			// Alter upsells display
+			remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+			add_action( 'woocommerce_after_single_product_summary', array( $this, 'upsell_display' ), 15 );
+
 			// Alter WooCommerce category thumbnail
 			remove_action( 'woocommerce_before_subcategory_title', 'woocommerce_subcategory_thumbnail', 10 );
 			add_action( 'woocommerce_before_subcategory_title', array( $this, 'subcategory_thumbnail' ), 10 );
@@ -87,6 +94,25 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Remove loop product thumbnail function and add our own that pulls from template parts
 			remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_thumbnail' ), 10 );
+
+			// Remove coupon from checkout
+			//remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+		}
+
+		/**
+		 * Change products per row for upsells.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function upsell_display() {
+			// Get count
+			$count = wpsp_get_redux( 'woocommerce_upsells_count', 3 );
+			$count = $count ? $count : '3';
+			// Get columns
+			$columns = wpsp_get_redux( 'woocommerce_upsells_columns', 3 );
+			$columns = $columns ? $columns : '3';
+			// Alter upsell display
+			woocommerce_upsell_display( $count, $columns );
 		}
 
 		/**
