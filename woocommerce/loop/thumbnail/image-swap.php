@@ -43,7 +43,7 @@ if ( ! empty( $attachment_ids ) ) {
 // Return thumbnail
 if ( $secondary_img_id ) : ?>
 
-	<div class="woo-entry-image-swap wpsp-clear">
+	<div class="woo-entry-image-swap clear">
 		<?php
 		// Main IMage
 		wpsp_post_thumbnail( array(

@@ -21,6 +21,9 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		function __construct(){
 			include_once( WPSP_INC_DIR . 'woocommerce/woocommerce-helper.php' );
 
+			// These filters/actions must run on init
+			add_action( 'init', array( $this, 'init' ) );
+
 			// Register Woo Sidebar
 			add_filter( 'widgets_init', array( $this, 'register_woo_sidebar' ) );
 
@@ -67,6 +70,33 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_product_args' ) );
 			add_filter( 'woocommerce_pagination_args', array( $this, 'pagination_args' ) );
 			add_filter( 'woocommerce_continue_shopping_redirect', array( $this, 'continue_shopping_redirect' ) );
+		}
+
+		/**
+		 * Runs on Init.
+		 * You can't remove certain actions in the constructor because it's too early.
+		 *
+		 * @since 1.0.0
+		 */
+		public function init() {
+			// Remove loop product thumbnail function and add our own that pulls from template parts
+			remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'loop_product_thumbnail' ), 10 );
+		}
+
+		/**
+		 * Returns our product thumbnail from our template parts based on selected style in theme mods.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function loop_product_thumbnail() {
+			if ( function_exists( 'wc_get_template' ) ) {
+				// Get entry product media style
+				$style = wpsp_get_redux( 'woo_product_entry_style', 'image-swap' ); // image-swap, featured-image, gallery-slider
+				$style = $style ? $style : 'image-swap';
+				// Get entry product media template part
+				wc_get_template(  'loop/thumbnail/'. $style .'.php' );
+			}
 		}
 
 		/**
@@ -378,8 +408,8 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 * @since 1.0.0
 		 */
 		public static function loop_shop_columns() {
-			$columns = wpsp_get_redux( 'woocommerce-shop-columns', 4 );
-			$columns = $columns ? $columns : '4';
+			$columns = wpsp_get_redux( 'woocommerce-shop-columns', 3 );
+			$columns = $columns ? $columns : '3';
 			return $columns;
 		}
 
@@ -446,8 +476,8 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			$posts_per_page = wpsp_get_redux( 'woocommerce-related-count', 4 );
 			$posts_per_page = $posts_per_page ? $posts_per_page : '4';
 			// Get columns
-			$columns = wpsp_get_redux( 'woocommerce-related-columns', 4 );
-			$columns = $columns ? $columns : '4';
+			$columns = wpsp_get_redux( 'woocommerce-related-columns', 3 );
+			$columns = $columns ? $columns : '3';
 			// Return array
 			return array(
 				'posts_per_page' => $posts_per_page,
