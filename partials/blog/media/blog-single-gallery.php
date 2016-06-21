@@ -26,7 +26,7 @@ $overlay = wpsp_get_redux( 'media-gallery-overlay' ); ?>
 	<?php foreach ( $photos_meta as $photo ) : ?>
 		<div class="<?php echo $classes; ?>">
 			<div class="blog-entry-media entry-media <?php echo wpsp_overlay_classes( $overlay ); ?>">
-				<a href="<?php echo $photo['full_url'];?>" rel="bookmark" title="<?php echo $photo['title'];?>">
+				<a href="<?php echo $photo['full_url'];?>" rel="bookmark" title="<?php echo $photo['title'];?>"  class="wpsp-lightbox-group-item">
 					<img src="<?php echo $photo['url'];?>">
 					<?php wpsp_overlay( 'inside_link', $overlay ); ?>
 				</a>

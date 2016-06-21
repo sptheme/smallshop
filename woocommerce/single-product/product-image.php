@@ -88,7 +88,7 @@ $show_slider = apply_filters( 'wpsp_woo_product_slider', $show_slider ); ?>
 
 							<div class="wpsp-slider-slide sp-slide">
 
-								<a href="#<?php //wpsp_get_lightbox_image( $attachment ); ?>" title="<?php echo esc_attr( $attachment_alt ); ?>" data-title="<?php echo esc_attr( $attachment_alt ); ?>" data-type="image" class="wpsp-lightbox-group-item"><?php echo $thumbnail; ?></a>
+								<a href="<?php wpsp_lightbox_image( $attachment ); ?>" title="<?php echo esc_attr( $attachment_alt ); ?>" class="wpsp-lightbox-group-item"><?php echo $thumbnail; ?></a>
 
 							</div><!--. wpsp-slider-slide -->
 

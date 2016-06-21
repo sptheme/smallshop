@@ -1417,19 +1417,15 @@
 		        }
 		    });
 
-		    // Setup wp gallery work with magnificPopup
-		    $('.gallery').each(function() {
-		        $(this).magnificPopup({
-		            delegate: 'a',
-		            type: 'image',
-		            removalDelay: 300,
+		    // Setup Woo Commerce product image and post gallery work with magnificPopup
+			$('.wpsp-lightbox-group-item').magnificPopup({
+					type: 'image',
+					removalDelay: 300,
 		            mainClass: 'mfp-fade',
-		            gallery: {
-		            	enabled: true,
-		            	navigateByImgClick: true
-		            }
-		        });
-		    });
+					gallery:{
+						enabled:true
+					}
+			});
 
 		    // Setup video work with magnificPopup
 		    $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
