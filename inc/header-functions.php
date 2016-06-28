@@ -228,7 +228,7 @@ function wpsp_body_classes( $classes ) {
 
 	// Content layout
 	if ( $post_layout ) {
-		$classes[] = 'content-'. $post_layout;
+		$classes[] = $post_layout;
 	}
 
 	// Single Post cagegories
@@ -240,7 +240,7 @@ function wpsp_body_classes( $classes ) {
 	}
 
 	// Topbar
-	if ( wpsp_get_redux( 'has-top-bar' ) ) {
+	if ( wpsp_get_redux( 'has-top-bar', false ) ) {
 		$classes[] = 'has-topbar';
 	}
 
@@ -294,11 +294,15 @@ function wpsp_post_layout() {
 	
 	global $post;
 
-	// Check URL
-	if ( ! empty( $_GET['post_layout'] ) ) {
-		return esc_html( $_GET['post_layout'] );
-	}
+	// Define variables
+	$class  = 'right-sidebar';
+	$meta   = get_post_meta( $post->ID, 'wpsp_layout', true );
 
+	// Check meta first to override and return (prevents filters from overriding meta)
+	if ( isset( $meta ) && !empty( $meta ) && $meta != 'inherit' ) {
+		$class = $meta;
+	}
+	
 	// Singular Page
 	if ( is_page() ) {
 
@@ -314,7 +318,7 @@ function wpsp_post_layout() {
 	}
 
 	// Singular Post
-	elseif ( is_singular( 'post' ) ) {
+	elseif ( is_singular( 'post' ) && ( wpsp_get_redux('single-layout') !='inherit' ) ) {
 
 		$class = wpsp_get_redux( 'single-layout', 'right-sidebar' );
 
@@ -365,12 +369,12 @@ function wpsp_post_layout() {
 
 	// All else
 	else {
-		$class = 'right-sidebar';
+		$class = wpsp_get_redux( 'layout-global', 'right-sidebar' );
 	}
 
 	// Class should never be empty
 	if ( empty( $class ) ) {
-		$class = 'right-sidebar';
+		$class = wpsp_get_redux( 'layout-global', 'right-sidebar' );
 	}
 
 	// Apply filters and return

@@ -66,6 +66,9 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 					add_filter( 'wpsp_sidebar_primary', array( $this, 'display_sidebar' ) );
 				}
 
+				// Alter the post layouts for portfolio posts and archives
+				add_filter( 'wpsp_post_layout_class', array( $this, 'layouts' ) );
+
 				// Posts per page
 				add_action( 'pre_get_posts', array( $this, 'posts_per_page' ) );	
 			}
@@ -609,6 +612,20 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 			// Return correct sidebar to display
 			return $sidebar;
 
+		}
+
+		/**
+		 * Alter the post layouts for portfolio posts and archives.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function layouts( $class ) {
+			if ( is_singular( 'portfolio' ) && ( wpsp_get_redux('portfolio-single-layout') !='inherit' ) ) {
+				$class = wpsp_get_redux( 'portfolio-single-layout', 'full-width' );
+			} elseif ( wpsp_is_portfolio_tax() && ! is_search() ) {
+				$class = wpsp_get_redux( 'portfolio-archive-layout', 'full-width' );
+			}
+			return $class;
 		}
 		
 		/**

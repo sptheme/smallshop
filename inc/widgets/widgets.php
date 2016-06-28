@@ -199,10 +199,6 @@ function wpsp_layout_class() {
 	elseif ( is_search() && ( wpsp_get_redux('search-layout') !='inherit' ) ) $layout = wpsp_get_redux('search-layout');
 	elseif ( is_404() && ( wpsp_get_redux('404-layout') !='inherit' ) ) $layout = wpsp_get_redux('404-layout');
 
-	// Custom taxonomy layout
-	elseif ( is_tax('portfolio_category') && wpsp_get_redux('portfolio-archive-layout') !='inherit' ) $sidebar = wpsp_get_redux('portfolio-archive-layout');
-	elseif ( is_tax('portfolio_tag') && wpsp_get_redux('portfolio-archive-layout') !='inherit' ) $sidebar = wpsp_get_redux('portfolio-archive-layout');
-
 	// Global option
 	else $layout = wpsp_get_redux( 'layout-global' );
 
