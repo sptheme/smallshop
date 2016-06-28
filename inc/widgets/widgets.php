@@ -135,10 +135,6 @@ function wpsp_sidebar_primary( $sidebar = 'sidebar' ) {
 	if ( is_404() && wpsp_get_redux('sidebar-404') ) $sidebar = wpsp_get_redux('sidebar-404');
 	if ( is_page() && wpsp_get_redux('sidebar-page') ) $sidebar = wpsp_get_redux('sidebar-page');
 
-	if ( is_singular('portfolio') && wpsp_get_redux('sidebar-portfolio-single-post') ) $sidebar = wpsp_get_redux('sidebar-portfolio-single-post');
-	if ( is_tax('portfolio_category') && wpsp_get_redux('sidebar-portfolio-archive') ) $sidebar = wpsp_get_redux('sidebar-portfolio-archive');
-	if ( is_tax('portfolio_tag') && wpsp_get_redux('sidebar-portfolio-archive') ) $sidebar = wpsp_get_redux('sidebar-portfolio-archive');
-
 	/***
 	 * FILTER    => Add filter for tweaking the sidebar display via child theme's
 	 * IMPORTANT => Must be added before meta options so that it doesn't take priority

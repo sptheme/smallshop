@@ -61,6 +61,11 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 				add_action( 'admin_print_styles-portfolio_page_wpsp-portfolio-editor', array( $this,'css' ) );
 			} else {
 				
+				// Display correct sidebar for portfolio items
+				if ( 'off' != get_option( 'portfolio_custom_sidebar', 'on' ) ) {
+					add_filter( 'wpsp_sidebar_primary', array( $this, 'display_sidebar' ) );
+				}
+
 				// Posts per page
 				add_action( 'pre_get_posts', array( $this, 'posts_per_page' ) );	
 			}
@@ -588,11 +593,28 @@ if ( ! class_exists( 'WPSP_Cp_Portfolio' ) ) {
 				'after_title'   => '</h2>',
 			) );
 		}
+
+		/**
+		 * Alter main sidebar to display portfolio sidebar.
+		 *
+		 * @since 1.0.0
+		 */
+		public static function display_sidebar( $sidebar ) {
+
+			// Display portfolio_sidebar where necessary
+			if ( is_singular( 'portfolio' ) || wpsp_is_portfolio_tax() ) {
+				$sidebar = 'portfolio_sidebar';
+			}
+
+			// Return correct sidebar to display
+			return $sidebar;
+
+		}
 		
 		/**
 		 * Alters posts per page for the portfolio taxonomies.
 		 *
-		 * @since 2.0.0
+		 * @since 1.0.0
 		 * @link    http://codex.wordpress.org/Plugin_API/Action_Reference/pre_get_posts
 		 */
 		public static function posts_per_page( $query ) {
