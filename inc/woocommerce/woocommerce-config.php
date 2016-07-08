@@ -167,7 +167,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Display placeholder
 			else {
 
-				echo '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_html__( 'Placeholder Image', 'wpsp-blog-textdomain' ) .'" />';
+				echo '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_html__( 'Placeholder Image', 'smallshop' ) .'" />';
 
 			}
 
@@ -200,7 +200,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 
 			// Register new woo_sidebar widget area
 			register_sidebar( array (
-				'name'          => esc_html__( 'WooCommerce Sidebar', 'wpsp-blog-textdomain' ),
+				'name'          => esc_html__( 'WooCommerce Sidebar', 'smallshop' ),
 				'id'            => 'woo_sidebar',
 				'before_widget' => '<div class="widget %2$s clear">',
 				'after_widget'  => '</div>',
@@ -318,7 +318,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		public static function add_shop_loop_item_out_of_stock_badge() {
 			if ( function_exists( 'wpsp_woo_product_instock' ) && ! wpsp_woo_product_instock() ) { ?>
 				<div class="outofstock-badge">
-					<?php echo apply_filters( 'wpsp_woo_outofstock_text', esc_html__( 'Out of Stock', 'wpsp-blog-textdomain' ) ); ?>
+					<?php echo apply_filters( 'wpsp_woo_outofstock_text', esc_html__( 'Out of Stock', 'smallshop' ) ); ?>
 				</div><!-- .product-entry-out-of-stock-badge -->
 			<?php }
 		}
@@ -477,7 +477,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 * @since 1.0.0
 		 */
 		public static function woocommerce_sale_flash( $text, $post, $_product ) {
-			return '<span class="onsale">'. esc_html__( 'Sale', 'wpsp-blog-textdomain' ) .'</span>';
+			return '<span class="onsale">'. esc_html__( 'Sale', 'smallshop' ) .'</span>';
 		}
 
 		/**
