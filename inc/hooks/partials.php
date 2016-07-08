@@ -391,3 +391,16 @@ function wpsp_footer_reveal_close() {
 		get_template_part( 'partials/footer/footer-reveal-close' );
 	}
 }
+
+/*-------------------------------------------------------------------------------*/
+/* #  Other
+/*-------------------------------------------------------------------------------*/
+
+/**
+ * Returns social sharing template part
+ *
+ * @since 1.0.0
+ */
+function wpsp_social_share() {
+	get_template_part( 'partials/social-share' );
+}

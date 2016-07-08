@@ -35,5 +35,5 @@ if ( $attachment ) {
 
 // Display placeholder
 else {
-    echo '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_html__( 'Placeholder Image', 'wpsp-blog-textdomain' ) .'" class="woo-entry-image-main" />';
+    echo '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_html__( 'Placeholder Image', 'smallshop' ) .'" class="woo-entry-image-main" />';
 } ?>

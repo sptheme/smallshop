@@ -102,12 +102,12 @@ if ( ! function_exists( 'wpsp_wcmenucart_menu_item' ) ) {
 		// Cart Icon
 		$icon_class = wpsp_get_redux( 'woo-menu-icon-class' ); // shopping-cart, shopping-bag, shopping-basket
 		$icon_class = $icon_class ? $icon_class : 'shopping-cart';
-		$cart_icon = '<span class="wcmenucart-icon fa fa-'. esc_attr( $icon_class ) .'"></span><span class="wcmenucart-text">'. esc_html__( 'Shop', 'wpsp-blog-textdomain' ) .'</span>';
+		$cart_icon = '<span class="wcmenucart-icon fa fa-'. esc_attr( $icon_class ) .'"></span><span class="wcmenucart-text">'. esc_html__( 'Shop', 'smallshop' ) .'</span>';
 		$cart_icon = apply_filters( 'wpsp_menu_cart_icon_html', $cart_icon );
 
 		ob_start(); ?>
 
-			<a href="<?php echo esc_url( $url ); ?>" class="wcmenucart" title="<?php esc_html_e( 'Your Cart', 'wpsp-blog-textdomain' ); ?>">
+			<a href="<?php echo esc_url( $url ); ?>" class="wcmenucart" title="<?php esc_html_e( 'Your Cart', 'smallshop' ); ?>">
 				<span class="link-inner">
 					<span class="wcmenucart-count"><?php echo $cart_icon; ?><?php echo $cart_extra; ?></span>
 				</span>
@@ -163,7 +163,7 @@ function menu_cart_style() {
  */
 function wpsp_woo_placeholder_img() {
 	if ( function_exists( 'wc_placeholder_img_src' ) && wc_placeholder_img_src() ) {
-		$placeholder = '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_attr__( 'Placeholder Image', 'wpsp-blog-textdomain' ) .'" class="woo-entry-image-main" />';
+		$placeholder = '<img src="'. wc_placeholder_img_src() .'" alt="'. esc_attr__( 'Placeholder Image', 'smallshop' ) .'" class="woo-entry-image-main" />';
 		$placeholder = apply_filters( 'wpsp_woo_placeholder_img_html', $placeholder );
 		if ( $placeholder ) {
 			echo $placeholder;

@@ -50,7 +50,7 @@ if ( 'custom_text' == wpsp_get_redux( 'blog-single-header', 'custom_text' ) ) {
 		<?php endif; ?>
 
 		<?php if ( $key == 'comments' && $value == '1' && comments_open() && ! post_password_required() ): ?>
-			<li class="meta-comments comment-scroll"><span class="fa fa-comment-o"></span><?php comments_popup_link( esc_html__( '0 Comments', 'smallshop' ), esc_html__( '1 Comment',  'comics-arts' ), esc_html__( '% Comments', 'smallshop' ), 'comments-link' ); ?></li>
+			<li class="meta-comments comment-scroll"><span class="fa fa-comment-o"></span><?php comments_popup_link( esc_html__( '0 Comments', 'smallshop' ), esc_html__( '1 Comment',  'smallshop' ), esc_html__( '% Comments', 'smallshop' ), 'comments-link' ); ?></li>
 		<?php endif; ?>
 
 	<?php endforeach; ?>
