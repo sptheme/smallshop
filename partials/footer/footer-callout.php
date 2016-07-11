@@ -54,7 +54,7 @@ $link_text = wpsp_translate_theme_mod( 'callout_link_txt', $link_text ); ?>
 
 	<div id="callout" class="clear container">
 
-		<div id="callout-left" class="callout-content clear <?php if ( ! $link ) echo 'full-width'; ?>">
+		<div id="callout-left" class="callout-content <?php if ( ! $link ) echo 'full-width'; ?>">
 
 			<?php echo do_shortcode( $content ); ?>
 
@@ -64,7 +64,7 @@ $link_text = wpsp_translate_theme_mod( 'callout_link_txt', $link_text ); ?>
 		// Display footer callout button if callout link & text options are not blank in the admin
 		if ( $link ) : ?>
 
-			<div id="callout-right" class="callout-button clear">
+			<div id="callout-right" class="callout-button">
 
 				<a href="<?php echo esc_url( $link ); ?>" class="theme-button" title="<?php echo esc_attr( $link_text ); ?>"<?php echo $target; ?><?php echo $rel; ?>><?php echo $link_text; ?></a>
 
