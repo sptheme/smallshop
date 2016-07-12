@@ -110,10 +110,10 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 */
 		public static function cross_sell_display() {
 			// Get count
-			$count = wpex_get_mod( 'woocommerce-cross-sells-count' );
+			$count = wpsp_get_redux( 'woocommerce-cross-sells-count', 2 );
 			$count = $count ? $count : '2';
 			// Get columns
-			$columns = wpex_get_mod( 'woocommerce-cross-sells-columns' );
+			$columns = wpsp_get_redux( 'woocommerce-cross-sells-columns', 2 );
 			$columns = $columns ? $columns : '2';
 			// Alter cross-sell display
 			woocommerce_cross_sell_display( $count, $columns );
@@ -511,6 +511,10 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			global $product, $woocommerce_loop;
 			if ( $product && $woocommerce_loop ) {
 				$classes[] = 'col';
+				if (!isset($woocommerce_loop['columns']) || !$woocommerce_loop['columns']) {
+					$woocommerce_loop['columns'] = apply_filters('loop_shop_columns', wpsp_get_redux( 'woocommerce-shop-columns', 3 ) );
+					$classes[] = wpsp_grid_class( $woocommerce_loop['columns'] );
+				}
 				$classes[] = wpsp_grid_class( $woocommerce_loop['columns'] );
 			}
 			return $classes;
