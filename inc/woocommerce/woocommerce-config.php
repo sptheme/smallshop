@@ -32,7 +32,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 				add_filter( 'wpsp_sidebar_primary', array( $this, 'display_woo_sidebar' ) );
 
 				// Set correct post layouts
-				add_filter( 'wpsp_layout_class', array( $this, 'layouts' ) );
+				add_filter( 'wpsp_post_layout_class', array( $this, 'layouts' ) );
 			}
 
 			// Scripts
@@ -41,7 +41,7 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'add_custom_css' ) );
 
 			// Social share
-			add_action( 'woocommerce_after_single_product_summary', 'wpsp_social_share', 11 );
+			add_action( 'woocommerce_share', 'wpsp_social_share', 11 );
 
 			// Menu cart
 			add_action( 'wpsp_hook_header_inner', array( $this, 'cart_dropdown' ), 40 );
@@ -235,9 +235,9 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			if ( wpsp_is_woo_shop() ) {
 				$class = wpsp_get_redux( 'woo-shop-layout', 'left-sidebar' );
 			} elseif ( wpsp_is_woo_tax() ) {
-				$class = wpsp_get_redux( 'woo_shop_layout', 'left-sidebar' );
+				$class = wpsp_get_redux( 'woo-shop-layout', 'left-sidebar' );
 			} elseif ( wpsp_is_woo_single() ) {
-				$class = wpsp_get_redux( 'woo_product_layout', 'left-sidebar' );
+				$class = wpsp_get_redux( 'woo-product-layout', 'full-width' );
 			}
 			return $class;
 		}
@@ -457,10 +457,10 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 		 */
 		public static function remove_product_settings( $settings ) {
 			$remove = array(
-				'image_options',
+				/*'image_options',
 				'shop_catalog_image_size',
 				'shop_single_image_size',
-				'shop_thumbnail_image_size',
+				'shop_thumbnail_image_size',*/
 				'woocommerce_enable_lightbox'
 			);
 			foreach( $settings as $key => $val ) {
@@ -566,8 +566,8 @@ if ( ! class_exists( 'WPSP_WooCommerce_Config' ) ) {
 			// Get global vars
 			global $product, $orderby, $related;
 			// Get posts per page
-			$posts_per_page = wpsp_get_redux( 'woocommerce-related-count', 4 );
-			$posts_per_page = $posts_per_page ? $posts_per_page : '4';
+			$posts_per_page = wpsp_get_redux( 'woocommerce-related-count', 3 );
+			$posts_per_page = $posts_per_page ? $posts_per_page : '3';
 			// Get columns
 			$columns = wpsp_get_redux( 'woocommerce-related-columns', 3 );
 			$columns = $columns ? $columns : '3';

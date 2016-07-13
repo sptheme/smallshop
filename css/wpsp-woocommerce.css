@@ -631,3 +631,11 @@ p.myaccount_user { padding: 20px; border: 1px solid #eee; }
 /* Accent > #3b86b0 > Border */
 #current-shop-items-dropdown { border-top-color: #3b86b0 }
 .woocommerce div.product .woocommerce-tabs ul.tabs li.active a { border-bottom-color: #3b86b0 }
+
+
+/*------------------------------------------------------------------
+[Addon]
+-------------------------------------------------------------------*/
+.single-product .wpsp-social-share-wrap {
+	margin-top: 15px;
+}
