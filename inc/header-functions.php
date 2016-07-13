@@ -299,7 +299,7 @@ function wpsp_post_layout() {
 
 	// Check meta first to override and return (prevents filters from overriding meta)
 	if ( isset( $meta ) && !empty( $meta ) && $meta != 'inherit' ) {
-		$class = $meta;
+		return $meta;
 	}
 
 	// Singular Page
@@ -331,17 +331,17 @@ function wpsp_post_layout() {
 	}
 
 	// Home
-	elseif ( is_home() ) {
+	elseif ( is_home() && ( wpsp_get_redux('archive-layout') !='inherit' ) ) {
 		$class = wpsp_get_redux( 'archive-layout', 'right-sidebar' );
 	}
 
 	// Search
-	elseif ( is_search() ) {
+	elseif ( is_search() && ( wpsp_get_redux('search-layout') !='inherit' ) ) {
 		$class = get_theme_mod( 'search-layout', 'right-sidebar' );
 	}
 
 	// Standard Categories
-	elseif ( is_category() ) {
+	elseif ( is_category() && ( wpsp_get_redux('archive-layout') !='inherit' ) ) {
 		$class = wpsp_get_redux( 'archives-layout', 'right-sidebar' );
 		$term  = get_query_var( 'cat' );
 		if ( $term_data = get_option( "category_$term" ) ) {
@@ -362,15 +362,15 @@ function wpsp_post_layout() {
 	}
 	
 	// 404 page
-	elseif ( is_404() ) {
-		$class = 'full-width';
+	elseif ( is_404() && ( wpsp_get_redux('404-layout') !='inherit' ) ) {
+		$class = wpsp_get_redux( '404-layout', 'full-width' );
 	}
 
 	// All else
 	else {
 		// Class should never be empty
 		if ( empty( $class ) ) {
-			$class = wpsp_get_redux( 'layout-global' );
+			$class = wpsp_get_redux( 'layout-global', 'right-sidebar' );
 		}
 	}
 

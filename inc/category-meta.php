@@ -48,6 +48,7 @@ if ( ! class_exists( 'WPSP_Category_Meta' ) ) {
 					<option value="right-sidebar" <?php selected( $layout, 'right-sidebar' ) ?>><?php esc_html_e( 'Right Sidebar', 'smallshop' ); ?></option>
 					<option value="left-sidebar" <?php selected( $layout, 'left-sidebar' ) ?>><?php esc_html_e( 'Left Sidebar', 'smallshop' ); ?></option>
 					<option value="full-width" <?php selected( $layout, 'full-width' ) ?>><?php esc_html_e( 'Full Width', 'smallshop' ); ?></option>
+					<option value="full-screen" <?php selected( $layout, 'full-screen' ) ?>><?php esc_html_e( 'Full Screen', 'wpsp-blog' ); ?></option>
 				</select>
 			</td>
 			</tr>

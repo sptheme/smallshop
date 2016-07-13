@@ -166,9 +166,10 @@
 				// Array of 'value' => 'Image Source' pairs
 				'options'  => array(
 					'inherit'  => get_template_directory_uri() . '/images/admin/layout-off.png',
-					'full-width'   => get_template_directory_uri() . '/images/admin/col-1c.png',
-					'left-sidebar'  => get_template_directory_uri() . '/images/admin/col-2cl.png',
-					'right-sidebar'  => get_template_directory_uri() . '/images/admin/col-2cr.png',
+					'right-sidebar'  => get_template_directory_uri() . '/images/admin/2cr.png',
+					'left-sidebar'  => get_template_directory_uri() . '/images/admin/2cl.png',
+					'full-width'   => get_template_directory_uri() . '/images/admin/full-width.png',
+					'full-screen'   => get_template_directory_uri() . '/images/admin/full-screen.png',
 				),
 			),
 		)

@@ -455,15 +455,20 @@ button:active { color: #fff; box-shadow: 0 2px 2px rgba(0,0,0,.1) inset; }
 }
 .widget-area { width: 26%; float: right; }
 
-.right-sidebar .content-area,
-.left-sidebar .widget-area { float: left; }
-.right-sidebar .widget-area,
-.left-sidebar .content-area { float: right; }
+/* Layout & Widths > Left Sidebar */
+body.left-sidebar #content-wrap .content-area,
+.left-sidebar .content-area { float: right }
+body.left-sidebar #content-wrap .content-area,
+.left-sidebar .content-area { float: left }
 
+/* Layout & Widths > Full-Width & Full-Screen */
+body.full-screen #content-wrap,
+.full-screen { width: 100% !important; max-width: none !important; }
+body.full-width #content-wrap .content-area,
 .full-width .content-area,
-.full-width .widget-area {
-	width: 100%;
-}
+body.full-screen #content-wrap { width: 100% !important; max-width: none !important; }
+body.full-screen #content-wrap .content-area,
+.full-screen .content-area { float: none; padding: 0; width: 100% !important; max-width: none !important; }
 
 /*--------------------------------------------------------------
 # Grid and Columns
@@ -2568,7 +2573,7 @@ ul.wpsp-social-share { list-style: none }
 /* Social Sharing > Vertical */
 .social-share-wrap.position-vertical .social-share-title { display: none }
 .wpsp-social-share.position-vertical { position: absolute; top: 40px; left: -55px; z-index: 9; width: 35px; list-style: none; margin: 0; }
-.content-left-sidebar .wpsp-social-share.position-vertical { right: -55px; left: auto; }
+.left-sidebar .wpsp-social-share.position-vertical { right: -55px; left: auto; }
 .wpsp-social-share.position-vertical li { float: left }
 .wpsp-social-share.position-vertical li:first-child { border-top: 1px solid #e4e4e4 }
 .wpsp-social-share.position-vertical .social-share-button-text { display: none }

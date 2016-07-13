@@ -9,6 +9,10 @@
 
 ?>
 
+<?php if ( in_array( wpsp_post_layout(), array( 'full-screen', 'full-width' ) ) ) {
+		return;
+	} ?>
+
 <?php $choice_sidebar = wpsp_sidebar_primary(); ?>
 <?php if ( ! is_active_sidebar( $choice_sidebar ) ) {
 		return;

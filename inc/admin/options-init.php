@@ -375,20 +375,24 @@
                 //Must provide key => value(array:title|img) pairs for radio options
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -480,20 +484,24 @@
                 'desc'     => __( '[ is_404 ] Error 404 page layout', 'wpsp-redux-framework' ),
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -523,20 +531,24 @@
                 'desc'     => __( '[ is_search ] Search page layout', 'wpsp-redux-framework' ),
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -1437,20 +1449,24 @@
                 'desc'     => __( '[ is_single ] Single post layout - If a post has a set layout, it will override this.', 'wpsp-redux-framework' ),
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -1609,20 +1625,24 @@
                 'desc'     => __( '[ is_archive ] Category, date, tag and author archive layout', 'wpsp-redux-framework' ),
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -1635,20 +1655,24 @@
                 'desc'     => __( '[ is_category ] Category archive layout', 'wpsp-redux-framework' ),
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -1823,20 +1847,24 @@
                 'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -1916,20 +1944,24 @@
                 'desc'     => __( 'Other layouts will override this option if they are set', 'wpsp-redux-framework' ),
                 'options'  => array(
                     'inherit' => array(
-                        'alt' => 'Inherit Global Layout',
+                        'alt' => 'Inherit',
                         'img' => get_template_directory_uri() . '/images/admin/layout-off.png'
                     ),
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
                 'default'  => 'inherit',
@@ -2029,19 +2061,23 @@
                 //Must provide key => value(array:title|img) pairs for radio options
                 'options'  => array(
                     'full-width' => array(
-                        'alt' => '1 Column',
-                        'img' => ReduxFramework::$_url . 'assets/img/1col.png'
+                        'alt' => 'Full width',
+                        'img' => get_template_directory_uri() . '/images/admin/full-width.png'
+                    ),
+                    'full-screen' => array(
+                        'alt' => 'Full screen',
+                        'img' => get_template_directory_uri() . '/images/admin/full-screen.png'
                     ),
                     'left-sidebar' => array(
                         'alt' => '2 Column Left',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cl.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cl.png'
                     ),
                     'right-sidebar' => array(
                         'alt' => '2 Column Right',
-                        'img' => ReduxFramework::$_url . 'assets/img/2cr.png'
+                        'img' => get_template_directory_uri() . '/images/admin/2cr.png'
                     )
                 ),
-                'default'  => 'full-width',
+                'default'  => 'right-sidebar',
             ),
             array(
                 'id'       => 'is-responsive',

@@ -16,7 +16,7 @@ $footer_headings  = $footer_headings ? $footer_headings : 'div';
 
 // Main Sidebar
 register_sidebar( array(
-	'name'          => esc_html__( 'Main Sidebar', 'smallshop' ),
+	'name'          => esc_html__( 'Main Sidebar', 'wpsp-blog' ),
 	'id'            => 'sidebar',
 	'before_widget' => '<div class="widget %2$s clear">',
 	'after_widget'  => '</div>',
@@ -27,7 +27,7 @@ register_sidebar( array(
 // Pages Sidebar
 if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Pages Sidebar', 'smallshop' ),
+		'name'          => esc_html__( 'Pages Sidebar', 'wpsp-blog' ),
 		'id'            => 'pages_sidebar',
 		'before_widget' => '<div class="widget %2$s clear">',
 		'after_widget'  => '</div>',
@@ -39,7 +39,7 @@ if ( wpsp_get_redux( 'pages-custom-sidebar', true ) ) {
 // Search Results Sidebar
 if ( wpsp_get_redux( 'is-search-custom-sidebar', true ) ) {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Search Results Sidebar', 'smallshop' ),
+		'name'          => esc_html__( 'Search Results Sidebar', 'wpsp-blog' ),
 		'id'            => 'search_sidebar',
 		'before_widget' => '<div class="widget %2$s clear">',
 		'after_widget'  => '</div>',
@@ -60,7 +60,7 @@ if ( $footer_widgets ) {
 	
 	// Footer 1
 	register_sidebar( array(
-		'name'          => esc_html__( 'Footer Column 1', 'smallshop' ),
+		'name'          => esc_html__( 'Footer Column 1', 'wpsp-blog' ),
 		'id'            => 'footer_one',
 		'before_widget' => '<div class="footer-widget %2$s clear">',
 		'after_widget'  => '</div>',
@@ -71,7 +71,7 @@ if ( $footer_widgets ) {
 	// Footer 2
 	if ( $footer_columns > '1' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 2', 'smallshop' ),
+			'name'          => esc_html__( 'Footer Column 2', 'wpsp-blog' ),
 			'id'            => 'footer_two',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
@@ -83,7 +83,7 @@ if ( $footer_widgets ) {
 	// Footer 3
 	if ( $footer_columns > '2' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 3', 'smallshop' ),
+			'name'          => esc_html__( 'Footer Column 3', 'wpsp-blog' ),
 			'id'            => 'footer_three',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
@@ -95,7 +95,7 @@ if ( $footer_widgets ) {
 	// Footer 4
 	if ( $footer_columns > '3' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 4', 'smallshop' ),
+			'name'          => esc_html__( 'Footer Column 4', 'wpsp-blog' ),
 			'id'            => 'footer_four',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
@@ -107,7 +107,7 @@ if ( $footer_widgets ) {
 	// Footer 5
 	if ( $footer_columns > '4' ) {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Footer Column 5', 'smallshop' ),
+			'name'          => esc_html__( 'Footer Column 5', 'wpsp-blog' ),
 			'id'            => 'footer_five',
 			'before_widget' => '<div class="footer-widget %2$s clear">',
 			'after_widget'  => '</div>',
@@ -156,64 +156,6 @@ function wpsp_sidebar_primary() {
 	// Return sidebar
 	return $sidebar;
 }
-endif;
-
-/**
- * Layout choice
- * 
- */
-if ( ! function_exists( 'wpsp_layout_class' ) ) :
-function wpsp_layout_class() {
-	// Default layout
-	$layout = 'full-width';
-	$default = 'right-sidebar';
-
-	// Check for page/post specific layout
-	if ( is_page() || is_single() ) {
-		// Reset post data
-		wp_reset_postdata();
-		global $post;
-		// Get meta
-		$meta = get_post_meta($post->ID,'wpsp_layout',true);
-		
-		// Get if set and not set to inherit
-		if ( isset($meta) && !empty($meta) && $meta != 'inherit' ) { $layout = $meta; }
-		
-		// Else check for page-global / single-global
-		elseif ( is_single() && ( wpsp_get_redux('single-layout') !='inherit' ) ) $layout = wpsp_get_redux('single-layout');
-		elseif ( is_page() && ( wpsp_get_redux('page-layout') !='inherit' ) ) $layout = wpsp_get_redux('page-layout');
-
-		// Else get global option
-		else $layout = wpsp_get_redux( 'layout-global' );
-	}
-
-	// Set layout based on page
-	elseif ( is_category() && ( wpsp_get_redux('category-layout') !='inherit' ) ) $layout = wpsp_get_redux('category-layout');
-	elseif ( is_archive() && ( wpsp_get_redux('archive-layout') !='inherit' ) ) $layout = wpsp_get_redux('archive-layout');
-	elseif ( is_search() && ( wpsp_get_redux('search-layout') !='inherit' ) ) $layout = wpsp_get_redux('search-layout');
-	elseif ( is_404() && ( wpsp_get_redux('404-layout') !='inherit' ) ) $layout = wpsp_get_redux('404-layout');
-
-	// Global option
-	else $layout = wpsp_get_redux( 'layout-global' );
-
-	// Apply filters for child theme editing
-	$layout = apply_filters( 'wpsp_layout_class', $layout );
-
-	// Return layout class
-	return $layout;
-}
-endif;
-
-/**
- * Add layout option in body class
- * 
- */
-if ( ! function_exists( 'wpsp_layout_option_body_class' ) ) :
-function wpsp_layout_option_body_class( $classes ) {
-	$classes[] = wpsp_layout_class();
-	return $classes;
-}
-//add_filter( 'body_class', 'wpsp_layout_option_body_class' );	
 endif;
 
 /**
