@@ -211,6 +211,13 @@
         'six' => esc_html__( 'Six - Vertical','wpsp-redux-framework' ),
     ) );
 
+    $wpsp_page_title_style = array(
+        ''                  => esc_html__( 'Default', 'wpsp-redux-framework' ),
+        'centered'          => esc_html__( 'Centered', 'wpsp-redux-framework' ),
+        'centered-minimal'  => esc_html__( 'Centered Minimal', 'wpsp-redux-framework' ),
+        'hidden'            => esc_html__( 'Hidden', 'wpsp-redux-framework' ),
+    );
+
     $visibility = apply_filters( 'wpsp_visibility', array(
         ''                         => esc_html__( 'Always Visible', 'wpsp-redux-framework' ),
         'hidden-phone'             => esc_html__( 'Hidden on Phones', 'wpsp-redux-framework' ),
@@ -356,6 +363,87 @@
                 'title'    => __( 'Enable for Pages', 'wpsp-redux-framework' ),
                 'subtitle' => __( 'Enable/disable for page', 'wpsp-redux-framework' ),
                 'default'  => '0'// 1 = on | 0 = off
+            ),
+        )
+    ) );
+    // General Pages title
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Page title', 'wpsp-redux-framework' ),
+        'id'         => 'page-title',
+        'subsection' => true,
+        //'desc'       => __( 'Use for any post that do not have post featured image with landscape, portrait and square', 'wpsp-redux-framework' ),
+        'fields'     => array(
+            array(
+                'id'       => 'page-title-style',
+                'type'     => 'select',
+                'title'    => __( 'Style', 'wpsp-redux-framework' ),
+                'options'  => $wpsp_page_title_style,
+            ),
+            array(
+                'id'       => 'page-title-top-padding',
+                'type'     => 'text',
+                'title'    => __( 'Top Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'page-title-bottom-padding',
+                'type'     => 'text',
+                'title'    => __( 'bottom Padding', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'page-title-bottom-margin',
+                'type'     => 'text',
+                'title'    => __( 'Bottom Margin', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Enter a value in pixels. Example: 20px.', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'page-title-background',
+                'type'     => 'color',
+                'title'    => __( 'Background', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'page-title-color',
+                'type'     => 'color',
+                'title'    => __( 'Text color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'page-title-top-border-color',
+                'type'     => 'color',
+                'title'    => __( 'Top Border Color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'page-title-bottom-border-color',
+                'type'     => 'color',
+                'title'    => __( 'Bottom Border Color', 'wpsp-redux-framework' ),
+                'default'  => '#ffffff',
+                'validate' => 'color',
+            ),
+            array(
+                'id'       => 'page-title-background-img',
+                'type'     => 'media',
+                'title'    => __( 'Background image', 'wpsp-redux-framework' ),
+                'subtitle' => __( 'Upload image', 'wpsp-redux-framework' ),
+            ),
+            array(
+                'id'       => 'page-title-background-img-position',
+                'type'     => 'select',
+                'title'    => __( 'Background Image Position', 'wpsp-redux-framework' ),
+                'options'  => array(
+                    'stretched'     => 'Stretched',
+                    'repeat'        => 'Repeat',
+                    'fixed-top'     => 'Fixed Top',
+                    'fixed'         => 'Fixed Center',
+                    'fixed-bottom'  => 'Fixed Bottom',
+                    'repeat-x'      => 'Repeat-x',
+                    'repeat-y'      => 'Repeat-y',
+                ),
             ),
         )
     ) );
@@ -1489,6 +1577,13 @@
                     'first_category' => 'First Category',
                 ),
                 'default'  => 'custom_text'
+            ),
+            array(
+                'id'       => 'blog-single-header-custom-text',
+                'type'     => 'text',
+                'required' => array( 'blog-single-header', '=', 'custom_text' ),
+                'title'    => __( 'Header Custom Text', 'wpsp-redux-framework' ),
+                'default'  => __( 'Blog', 'wpsp-redux-framework' ),
             ),
             array(
                 'id'       => 'is-featured-image-lightbox',

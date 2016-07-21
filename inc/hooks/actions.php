@@ -52,8 +52,7 @@ add_action( 'wpsp_hook_main_menu_bottom', 'wpsp_search_dropdown' );
 
 /* Content > Top
 -------------------------------------------------------------------------------*/
-//add_action( 'wpsp_hook_content_top', 'wpsp_page_header' );
-//add_action( 'wpsp_hook_content_top', 'wpsp_post_slider' );
+add_action( 'wpsp_hook_content_top', 'wpsp_page_header' );
 
 /* Content > Bottom
 -------------------------------------------------------------------------------*/
@@ -66,6 +65,17 @@ add_action( 'wpsp_hook_content_before', 'wpsp_overlay_header_wrap_open', 9999 );
 /* Content > After
 -------------------------------------------------------------------------------*/
 add_action( 'wpsp_hook_content_after', 'wpsp_overlay_header_wrap_close', 9999 );
+
+/* Page Header > Inner
+-------------------------------------------------------------------------------*/
+add_action( 'wpsp_hook_page_header_inner', 'wpsp_page_header_title_table_wrap_open', 0 );
+add_action( 'wpsp_hook_page_header_inner', 'wpsp_page_header_title' );
+add_action( 'wpsp_hook_page_header_inner', 'wpsp_page_header_subheading' );
+add_action( 'wpsp_hook_page_header_inner', 'wpsp_page_header_title_table_wrap_close', 9999 );
+
+/* Page Header > Bottom
+-------------------------------------------------------------------------------*/
+add_action( 'wpsp_hook_page_header_bottom', 'wpsp_page_header_overlay' );
 
 /* Wrap > Bottom
 -------------------------------------------------------------------------------*/

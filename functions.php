@@ -76,6 +76,9 @@ class WPSP_Theme_Setup {
 		// Loads html5 shiv script
 		add_action( 'wp_head', array( $this, 'html5_shiv' ) );
 
+		// Outputs custom CSS to the head
+		add_action( 'wp_head', array( $this, 'custom_css' ), 9999 );
+
 		// register sidebar widget areas
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 
@@ -137,6 +140,8 @@ class WPSP_Theme_Setup {
 		require_once( WPSP_INC_DIR .'blog-functions.php' );
 		require_once( WPSP_INC_DIR .'header-functions.php' );
 		require_once( WPSP_INC_DIR .'menu-functions.php' );
+		require_once( WPSP_INC_DIR .'page-header.php' );
+		require_once( WPSP_INC_DIR .'title.php' );
 		require_once( WPSP_INC_DIR .'pagination.php' );
 		require_once( WPSP_INC_DIR .'overlay.php' );
 	}
@@ -467,6 +472,31 @@ class WPSP_Theme_Setup {
 	 */
 	public static function html5_shiv() {
 		echo '<!--[if lt IE 9]><script src="'. WPSP_JS_DIR_URI .'vendors/html5.js"></script><![endif]-->';
+	}
+
+	/**
+	 * All theme functions hook into the wpex_head_css filter for this function.
+	 * This way all dynamic CSS is minified and outputted in one location in the site header.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function custom_css( $output = NULL ) {
+
+		global $redux_wpsp;
+
+		// Add filter for adding custom css via other functions
+		$output = apply_filters( 'wpsp_head_css', $output );
+
+		$bg = $redux_wpsp['page-title-background-img']['url'];
+		if ( $bg ) {
+			$output .= '.page-header.wpsp-supports-mods{background-image:url('. $bg .');}';
+		}
+
+		// Minify and output CSS in the wp_head
+		if ( ! empty( $output ) ) {
+			echo "<!-- Custom CSS -->\n<style type=\"text/css\">\n" . wp_strip_all_tags( wpsp_minify_css( $output ) ) . "\n</style>";
+		}
+
 	}
 
 	/**

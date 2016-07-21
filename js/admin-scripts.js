@@ -4,6 +4,34 @@
 
 jQuery(document).ready(function($) {
 
+	// Hide Metaboxes
+	var pageTitleBgSettings = $('.post_title_background_img, .post_title_height, .post_title_background_overlay, .post_title_background_overlay_opacity'),
+	 solidColorElements = $('.post_title_background_color'),
+	 pageTitleStyle = $('#wpsp_post_title_style');
+
+	if ( $('#page-options').length ) {
+
+		pageTitleBgSettings.hide();			
+		solidColorElements.hide();
+
+		if ( pageTitleStyle.val() === 'background-image' ) {
+			pageTitleBgSettings.show();
+		} else if ( pageTitleStyle.val() === 'solid-color' ) {
+			solidColorElements.show();
+		} 
+		
+		pageTitleStyle.change( function() {
+			pageTitleBgSettings.hide();			
+			if ( $(this).val() === 'background-image' ) {
+				pageTitleBgSettings.show();
+				solidColorElements.show();
+			} else if ( $(this).val() === 'solid-color' ) {
+				solidColorElements.show();
+				pageTitleBgSettings.hide();
+			}
+		});
+	}
+	
 	// Hide post format sections
 	function hide_statuses() {
 		$('#format-audio,#format-aside,#format-chat,#format-gallery,#format-image,#format-link,#format-quote,#format-status,#format-video').hide();
