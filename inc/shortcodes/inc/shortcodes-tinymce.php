@@ -3,7 +3,7 @@
  * Short codes in visual editor
  * Register short code buttons and add them to the visual mode of editor
  *
- * @package SmallShop
+ * @package WPSP_Blog
  */
 
 if ( ! function_exists( 'wpsp_shortcodes_register_mce_button_3' ) ) :
@@ -15,6 +15,7 @@ function wpsp_shortcodes_register_mce_button_3( $buttons ) {
 	array_unshift( $buttons, 'fontsizeselect' );
 	array_unshift( $buttons, 'fontselect' );
 
+	array_push( $buttons, 'container_tag' );
 	array_push( $buttons, 'col' );
 	//array_push( $buttons, 'post' );
 
@@ -52,6 +53,7 @@ function wpsp_shortcodes_add_tinymce_plugin($plugin_array) {
     else
         return;
 
+	$plugin_array['container_tag'] 		= ED_JS_URL . 'ed-container-tag.js';
 	$plugin_array['col'] 			= ED_JS_URL . 'ed-columns.js';
 	/*if ( $post_type == 'page' ) {
 		$plugin_array['post']		= ED_JS_URL . 'ed-post.js';

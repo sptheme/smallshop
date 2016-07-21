@@ -2,7 +2,7 @@
 /**
  * Shortcodes functions
  *
- * @package SmallShop
+ * @package WPSP_Blog
  */
 
 /**
@@ -24,6 +24,7 @@ function add_script_style_sc() {
  */
 function wpsp_add_shortcodes() {
 	add_shortcode( 'wpsp_row', 'wpsp_row' );
+	add_shortcode( 'container_tag', 'container_tag' );
 	add_shortcode( 'col', 'col' );
 }
 add_action( 'init', 'wpsp_add_shortcodes' );
@@ -59,6 +60,15 @@ function return_clean( $content, $p_tag = false, $br_tag = false )
 
 	return do_shortcode( shortcode_unautop( trim( $content ) ) );
 }
+
+if ( ! function_exists( 'container_tag' ) ) :
+/**
+ * Column
+ */
+function container_tag( $atts, $content = null ) {
+	return '<div class="container clear">' . return_clean($content) . '</div>';
+}
+endif;
 
 if ( ! function_exists( 'wpsp_row' ) ) :
 /**

@@ -2,7 +2,7 @@
 /**
  * Social Share Buttons Output
  *
- * @package SmallShop
+ * @package WPSP_Blog
  */
 
 // Exit if accessed directly
@@ -37,7 +37,7 @@ $summary = wpsp_get_excerpt( array(
 	'ignore_more_tag' => true,
 ) ); ?>
 
-<div class="wpsp-social-share-wrap clear">
+<div class="wpsp-social-share-wrap clear<?php if ( 'full-screen' == wpsp_post_layout() ) echo ' container'; ?>">
 
 	<?php
 	// Display heading if enabled
@@ -67,9 +67,9 @@ $summary = wpsp_get_excerpt( array(
 			$handle = wpsp_get_redux( 'social-share-twitter-handle' ); ?>
 
 			<li class="share-twitter">
-				<a href="http://twitter.com/share?text=<?php echo rawurlencode( $title ); ?>&amp;url=<?php echo rawurlencode( esc_url( $url ) ); ?><?php if ( $handle ) echo '&amp;via='. esc_attr( $handle ); ?>" title="<?php esc_html_e( 'Share on Twitter', 'smallshop' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+				<a href="http://twitter.com/share?text=<?php echo rawurlencode( $title ); ?>&amp;url=<?php echo rawurlencode( esc_url( $url ) ); ?><?php if ( $handle ) echo '&amp;via='. esc_attr( $handle ); ?>" title="<?php esc_html_e( 'Share on Twitter', 'wpsp-blog' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
 					<span class="fa fa-twitter"></span>
-					<span class="social-share-button-text"><?php esc_html_e( 'Tweet', 'smallshop' ); ?></span>
+					<span class="social-share-button-text"><?php esc_html_e( 'Tweet', 'wpsp-blog' ); ?></span>
 				</a>
 			</li>
 
@@ -78,9 +78,9 @@ $summary = wpsp_get_excerpt( array(
 		elseif ( 'facebook' == $key && $value == 1 ) { ?>
 
 			<li class="share-facebook">
-				<a href="http://www.facebook.com/share.php?u=<?php echo rawurlencode( esc_url( $url ) ); ?>" title="<?php esc_html_e( 'Share on Facebook', 'smallshop' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+				<a href="http://www.facebook.com/share.php?u=<?php echo rawurlencode( esc_url( $url ) ); ?>" title="<?php esc_html_e( 'Share on Facebook', 'wpsp-blog' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
 					<span class="fa fa-facebook"></span>
-					<span class="social-share-button-text"><?php esc_html_e( 'Share', 'smallshop' ); ?></span>
+					<span class="social-share-button-text"><?php esc_html_e( 'Share', 'wpsp-blog' ); ?></span>
 				</a>
 			</li>
 
@@ -89,9 +89,9 @@ $summary = wpsp_get_excerpt( array(
 			elseif ( 'google_plus' == $key && $value == 1 ) { ?>
 
 				<li class="share-googleplus">
-					<a href="https://plus.google.com/share?url=<?php echo rawurlencode( esc_url( $url ) ); ?>" title="<?php esc_html_e( 'Share on Google+', 'smallshop' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+					<a href="https://plus.google.com/share?url=<?php echo rawurlencode( esc_url( $url ) ); ?>" title="<?php esc_html_e( 'Share on Google+', 'wpsp-blog' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
 						<span class="fa fa-google-plus"></span>
-						<span class="social-share-button-text"><?php esc_html_e( 'Plus one', 'smallshop' ); ?></span>
+						<span class="social-share-button-text"><?php esc_html_e( 'Plus one', 'wpsp-blog' ); ?></span>
 					</a>
 				</li>
 
@@ -100,9 +100,9 @@ $summary = wpsp_get_excerpt( array(
 			elseif ( 'pinterest' == $key && $value == 1 ) { ?>
 
 				<li class="share-pinterest">
-					<a href="https://www.pinterest.com/pin/create/button/?url=<?php echo rawurlencode( esc_url( $url ) ); ?>&amp;media=<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post_id ) ); ?>&amp;description=<?php echo rawurlencode( $summary ); ?>" title="<?php esc_html_e( 'Share on Pinterest', 'smallshop' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+					<a href="https://www.pinterest.com/pin/create/button/?url=<?php echo rawurlencode( esc_url( $url ) ); ?>&amp;media=<?php echo wp_get_attachment_url( get_post_thumbnail_id( $post_id ) ); ?>&amp;description=<?php echo rawurlencode( $summary ); ?>" title="<?php esc_html_e( 'Share on Pinterest', 'wpsp-blog' ); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
 						<span class="fa fa-pinterest"></span>
-						<span class="social-share-button-text"><?php esc_html_e( 'Pin It', 'smallshop' ); ?></span>
+						<span class="social-share-button-text"><?php esc_html_e( 'Pin It', 'wpsp-blog' ); ?></span>
 					</a>
 				</li>
 
